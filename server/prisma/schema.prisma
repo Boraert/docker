@@ -1,0 +1,41 @@
+datasource postgres {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Campaign {
+  campaignHeadline String
+  createdAt        DateTime @default(now())
+  description      String?
+  id               String   @id @default(cuid())
+  images           String?
+  quantity         Int?
+  updatedAt        DateTime @updatedAt
+  value            String?
+}
+
+model CampaignDetail {
+  createdAt       DateTime @default(now())
+  id              String   @id @default(cuid())
+  interactionRate Int?
+  redeemed        Int?
+  saved           Int?
+  totalSales      Int?
+  updatedAt       DateTime @updatedAt
+  websiteTraffic  Int?
+}
