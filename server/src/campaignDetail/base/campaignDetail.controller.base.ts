@@ -50,7 +50,15 @@ export class CampaignDetailControllerBase {
     @common.Body() data: CampaignDetailCreateInput
   ): Promise<CampaignDetail> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        user: data.user
+          ? {
+              connect: data.user,
+            }
+          : undefined,
+      },
       select: {
         createdAt: true,
         id: true,
@@ -59,6 +67,13 @@ export class CampaignDetailControllerBase {
         saved: true,
         totalSales: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+
         websiteTraffic: true,
       },
     });
@@ -88,6 +103,13 @@ export class CampaignDetailControllerBase {
         saved: true,
         totalSales: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+
         websiteTraffic: true,
       },
     });
@@ -118,6 +140,13 @@ export class CampaignDetailControllerBase {
         saved: true,
         totalSales: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+
         websiteTraffic: true,
       },
     });
@@ -148,7 +177,15 @@ export class CampaignDetailControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          user: data.user
+            ? {
+                connect: data.user,
+              }
+            : undefined,
+        },
         select: {
           createdAt: true,
           id: true,
@@ -157,6 +194,13 @@ export class CampaignDetailControllerBase {
           saved: true,
           totalSales: true,
           updatedAt: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
+
           websiteTraffic: true,
         },
       });
@@ -195,6 +239,13 @@ export class CampaignDetailControllerBase {
           saved: true,
           totalSales: true,
           updatedAt: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
+
           websiteTraffic: true,
         },
       });

@@ -1,5 +1,6 @@
 import { StringFilter } from "../../util/StringFilter";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type CampaignDetailWhereInput = {
   id?: StringFilter;
@@ -7,5 +8,6 @@ export type CampaignDetailWhereInput = {
   redeemed?: IntNullableFilter;
   saved?: IntNullableFilter;
   totalSales?: IntNullableFilter;
+  user?: UserWhereUniqueInput;
   websiteTraffic?: IntNullableFilter;
 };

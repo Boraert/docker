@@ -1,3 +1,5 @@
+import { User } from "../user/User";
+
 export type Campaign = {
   campaignHeadline: string;
   createdAt: Date;
@@ -6,5 +8,6 @@ export type Campaign = {
   images: string | null;
   quantity: number | null;
   updatedAt: Date;
+  user?: User | null;
   value: string | null;
 };

@@ -8,5 +8,6 @@ export type CampaignDetailOrderByInput = {
   saved?: SortOrder;
   totalSales?: SortOrder;
   updatedAt?: SortOrder;
+  userId?: SortOrder;
   websiteTraffic?: SortOrder;
 };

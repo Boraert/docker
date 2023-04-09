@@ -11,12 +11,39 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsJSON } from "class-validator";
+import { CampaignDetailUpdateManyWithoutUsersInput } from "./CampaignDetailUpdateManyWithoutUsersInput";
+import { ValidateNested, IsOptional, IsString, IsJSON } from "class-validator";
+import { Type } from "class-transformer";
+import { CampaignUpdateManyWithoutUsersInput } from "./CampaignUpdateManyWithoutUsersInput";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
 
 @InputType()
 class UserUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: () => CampaignDetailUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => CampaignDetailUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => CampaignDetailUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  campaignDetails?: CampaignDetailUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => CampaignUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => CampaignUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => CampaignUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  campaigns?: CampaignUpdateManyWithoutUsersInput;
+
   @ApiProperty({
     required: false,
     type: String,

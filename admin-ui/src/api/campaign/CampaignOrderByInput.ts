@@ -8,5 +8,6 @@ export type CampaignOrderByInput = {
   images?: SortOrder;
   quantity?: SortOrder;
   updatedAt?: SortOrder;
+  userId?: SortOrder;
   value?: SortOrder;
 };

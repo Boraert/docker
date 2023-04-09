@@ -25,6 +25,10 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { CampaignDetailFindManyArgs } from "../../campaignDetail/base/CampaignDetailFindManyArgs";
+import { CampaignDetail } from "../../campaignDetail/base/CampaignDetail";
+import { CampaignFindManyArgs } from "../../campaign/base/CampaignFindManyArgs";
+import { Campaign } from "../../campaign/base/Campaign";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -133,5 +137,45 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [CampaignDetail])
+  @nestAccessControl.UseRoles({
+    resource: "CampaignDetail",
+    action: "read",
+    possession: "any",
+  })
+  async campaignDetails(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: CampaignDetailFindManyArgs
+  ): Promise<CampaignDetail[]> {
+    const results = await this.service.findCampaignDetails(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Campaign])
+  @nestAccessControl.UseRoles({
+    resource: "Campaign",
+    action: "read",
+    possession: "any",
+  })
+  async campaigns(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: CampaignFindManyArgs
+  ): Promise<Campaign[]> {
+    const results = await this.service.findCampaigns(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 }
