@@ -8,14 +8,16 @@ generator client {
 }
 
 model User {
-  createdAt DateTime @default(now())
-  firstName String?
-  id        String   @id @default(cuid())
-  lastName  String?
-  password  String
-  roles     Json
-  updatedAt DateTime @updatedAt
-  username  String   @unique
+  campaignDetails CampaignDetail[]
+  campaigns       Campaign[]
+  createdAt       DateTime         @default(now())
+  firstName       String?
+  id              String           @id @default(cuid())
+  lastName        String?
+  password        String
+  roles           Json
+  updatedAt       DateTime         @updatedAt
+  username        String           @unique
 }
 
 model Campaign {
@@ -26,6 +28,8 @@ model Campaign {
   images           String?
   quantity         Int?
   updatedAt        DateTime @updatedAt
+  user             User?    @relation(fields: [userId], references: [id])
+  userId           String?
   value            String?
 }
 
@@ -37,5 +41,7 @@ model CampaignDetail {
   saved           Int?
   totalSales      Int?
   updatedAt       DateTime @updatedAt
+  user            User?    @relation(fields: [userId], references: [id])
+  userId          String?
   websiteTraffic  Int?
 }

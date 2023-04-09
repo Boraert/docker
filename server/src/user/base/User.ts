@@ -11,13 +11,39 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, IsOptional, IsJSON } from "class-validator";
+import { CampaignDetail } from "../../campaignDetail/base/CampaignDetail";
+import {
+  ValidateNested,
+  IsOptional,
+  IsDate,
+  IsString,
+  IsJSON,
+} from "class-validator";
 import { Type } from "class-transformer";
+import { Campaign } from "../../campaign/base/Campaign";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
 
 @ObjectType()
 class User {
+  @ApiProperty({
+    required: false,
+    type: () => [CampaignDetail],
+  })
+  @ValidateNested()
+  @Type(() => CampaignDetail)
+  @IsOptional()
+  campaignDetails?: Array<CampaignDetail>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Campaign],
+  })
+  @ValidateNested()
+  @Type(() => Campaign)
+  @IsOptional()
+  campaigns?: Array<Campaign>;
+
   @ApiProperty({
     required: true,
   })

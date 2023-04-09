@@ -1,3 +1,5 @@
+import { User } from "../user/User";
+
 export type CampaignDetail = {
   createdAt: Date;
   id: string;
@@ -6,5 +8,6 @@ export type CampaignDetail = {
   saved: number | null;
   totalSales: number | null;
   updatedAt: Date;
+  user?: User | null;
   websiteTraffic: number | null;
 };

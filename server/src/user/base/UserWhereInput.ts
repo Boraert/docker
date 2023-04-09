@@ -11,13 +11,39 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { CampaignDetailListRelationFilter } from "../../campaignDetail/base/CampaignDetailListRelationFilter";
+import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { CampaignListRelationFilter } from "../../campaign/base/CampaignListRelationFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 
 @InputType()
 class UserWhereInput {
+  @ApiProperty({
+    required: false,
+    type: () => CampaignDetailListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => CampaignDetailListRelationFilter)
+  @IsOptional()
+  @Field(() => CampaignDetailListRelationFilter, {
+    nullable: true,
+  })
+  campaignDetails?: CampaignDetailListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => CampaignListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => CampaignListRelationFilter)
+  @IsOptional()
+  @Field(() => CampaignListRelationFilter, {
+    nullable: true,
+  })
+  campaigns?: CampaignListRelationFilter;
+
   @ApiProperty({
     required: false,
     type: StringNullableFilter,

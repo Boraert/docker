@@ -1,11 +1,16 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
   CreateProps,
   TextInput,
   NumberInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
+
+import { UserTitle } from "../user/UserTitle";
 
 export const CampaignCreate = (props: CreateProps): React.ReactElement => {
   return (
@@ -15,6 +20,9 @@ export const CampaignCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="Description" multiline source="description" />
         <TextInput label="Images" source="images" />
         <NumberInput step={1} label="Quantity" source="quantity" />
+        <ReferenceInput source="user.id" reference="User" label="User">
+          <SelectInput optionText={UserTitle} />
+        </ReferenceInput>
         <TextInput label="Value" multiline source="value" />
       </SimpleForm>
     </Create>

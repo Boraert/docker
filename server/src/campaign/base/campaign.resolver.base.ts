@@ -25,6 +25,7 @@ import { DeleteCampaignArgs } from "./DeleteCampaignArgs";
 import { CampaignFindManyArgs } from "./CampaignFindManyArgs";
 import { CampaignFindUniqueArgs } from "./CampaignFindUniqueArgs";
 import { Campaign } from "./Campaign";
+import { User } from "../../user/base/User";
 import { CampaignService } from "../campaign.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Campaign)
@@ -95,7 +96,15 @@ export class CampaignResolverBase {
   ): Promise<Campaign> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        user: args.data.user
+          ? {
+              connect: args.data.user,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -112,7 +121,15 @@ export class CampaignResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          user: args.data.user
+            ? {
+                connect: args.data.user,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -143,5 +160,21 @@ export class CampaignResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => User, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "read",
+    possession: "any",
+  })
+  async user(@graphql.Parent() parent: Campaign): Promise<User | null> {
+    const result = await this.service.getUser(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

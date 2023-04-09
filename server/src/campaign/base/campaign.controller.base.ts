@@ -48,7 +48,15 @@ export class CampaignControllerBase {
   })
   async create(@common.Body() data: CampaignCreateInput): Promise<Campaign> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        user: data.user
+          ? {
+              connect: data.user,
+            }
+          : undefined,
+      },
       select: {
         campaignHeadline: true,
         createdAt: true,
@@ -57,6 +65,13 @@ export class CampaignControllerBase {
         images: true,
         quantity: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+
         value: true,
       },
     });
@@ -86,6 +101,13 @@ export class CampaignControllerBase {
         images: true,
         quantity: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+
         value: true,
       },
     });
@@ -116,6 +138,13 @@ export class CampaignControllerBase {
         images: true,
         quantity: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+
         value: true,
       },
     });
@@ -146,7 +175,15 @@ export class CampaignControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          user: data.user
+            ? {
+                connect: data.user,
+              }
+            : undefined,
+        },
         select: {
           campaignHeadline: true,
           createdAt: true,
@@ -155,6 +192,13 @@ export class CampaignControllerBase {
           images: true,
           quantity: true,
           updatedAt: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
+
           value: true,
         },
       });
@@ -193,6 +237,13 @@ export class CampaignControllerBase {
           images: true,
           quantity: true,
           updatedAt: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
+
           value: true,
         },
       });
