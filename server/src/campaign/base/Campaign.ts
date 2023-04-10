@@ -13,8 +13,8 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
-  IsDate,
   IsOptional,
+  IsDate,
   IsInt,
   ValidateNested,
 } from "class-validator";
@@ -23,6 +23,17 @@ import { User } from "../../user/base/User";
 
 @ObjectType()
 class Campaign {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  campaignDuration!: string | null;
+
   @ApiProperty({
     required: true,
     type: String,

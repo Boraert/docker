@@ -60,7 +60,10 @@ export class CampaignDetailControllerBase {
           : undefined,
       },
       select: {
+        bought: true,
         createdAt: true,
+        description: true,
+        hoursMinutesSeconds: true,
         id: true,
         interactionRate: true,
         redeemed: true,
@@ -96,7 +99,10 @@ export class CampaignDetailControllerBase {
     return this.service.findMany({
       ...args,
       select: {
+        bought: true,
         createdAt: true,
+        description: true,
+        hoursMinutesSeconds: true,
         id: true,
         interactionRate: true,
         redeemed: true,
@@ -133,7 +139,10 @@ export class CampaignDetailControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
+        bought: true,
         createdAt: true,
+        description: true,
+        hoursMinutesSeconds: true,
         id: true,
         interactionRate: true,
         redeemed: true,
@@ -187,7 +196,10 @@ export class CampaignDetailControllerBase {
             : undefined,
         },
         select: {
+          bought: true,
           createdAt: true,
+          description: true,
+          hoursMinutesSeconds: true,
           id: true,
           interactionRate: true,
           redeemed: true,
@@ -232,7 +244,10 @@ export class CampaignDetailControllerBase {
       return await this.service.delete({
         where: params,
         select: {
+          bought: true,
           createdAt: true,
+          description: true,
+          hoursMinutesSeconds: true,
           id: true,
           interactionRate: true,
           redeemed: true,

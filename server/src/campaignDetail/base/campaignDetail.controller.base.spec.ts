@@ -19,7 +19,10 @@ import { CampaignDetailService } from "../campaignDetail.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  bought: 42,
   createdAt: new Date(),
+  description: "exampleDescription",
+  hoursMinutesSeconds: new Date(),
   id: "exampleId",
   interactionRate: 42,
   redeemed: 42,
@@ -29,7 +32,10 @@ const CREATE_INPUT = {
   websiteTraffic: 42,
 };
 const CREATE_RESULT = {
+  bought: 42,
   createdAt: new Date(),
+  description: "exampleDescription",
+  hoursMinutesSeconds: new Date(),
   id: "exampleId",
   interactionRate: 42,
   redeemed: 42,
@@ -40,7 +46,10 @@ const CREATE_RESULT = {
 };
 const FIND_MANY_RESULT = [
   {
+    bought: 42,
     createdAt: new Date(),
+    description: "exampleDescription",
+    hoursMinutesSeconds: new Date(),
     id: "exampleId",
     interactionRate: 42,
     redeemed: 42,
@@ -51,7 +60,10 @@ const FIND_MANY_RESULT = [
   },
 ];
 const FIND_ONE_RESULT = {
+  bought: 42,
   createdAt: new Date(),
+  description: "exampleDescription",
+  hoursMinutesSeconds: new Date(),
   id: "exampleId",
   interactionRate: 42,
   redeemed: 42,
@@ -144,6 +156,7 @@ describe("CampaignDetail", () => {
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
+        hoursMinutesSeconds: CREATE_RESULT.hoursMinutesSeconds.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       });
   });
@@ -156,6 +169,8 @@ describe("CampaignDetail", () => {
         {
           ...FIND_MANY_RESULT[0],
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
+          hoursMinutesSeconds:
+            FIND_MANY_RESULT[0].hoursMinutesSeconds.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
       ]);
@@ -179,6 +194,7 @@ describe("CampaignDetail", () => {
       .expect({
         ...FIND_ONE_RESULT,
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
+        hoursMinutesSeconds: FIND_ONE_RESULT.hoursMinutesSeconds.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
       });
   });
@@ -192,6 +208,7 @@ describe("CampaignDetail", () => {
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
+        hoursMinutesSeconds: CREATE_RESULT.hoursMinutesSeconds.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       })
       .then(function () {

@@ -16,9 +16,10 @@ export const CampaignCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <TextInput label="Campaign Duration" source="campaignDuration" />
         <TextInput label="Campaign headline" source="campaignHeadline" />
         <TextInput label="Description" multiline source="description" />
-        <TextInput label="Images" source="images" />
+        <TextInput label="Images" multiline source="images" />
         <NumberInput step={1} label="Quantity" source="quantity" />
         <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />

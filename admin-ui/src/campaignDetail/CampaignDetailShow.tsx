@@ -3,8 +3,8 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  DateField,
   TextField,
+  DateField,
   ReferenceField,
 } from "react-admin";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
@@ -13,7 +13,10 @@ export const CampaignDetailShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Bought" source="bought" />
         <DateField source="createdAt" label="Created At" />
+        <TextField label="Description" source="description" />
+        <TextField label="HoursMinutesSeconds" source="hoursMinutesSeconds" />
         <TextField label="ID" source="id" />
         <TextField label="Interaction rate" source="interactionRate" />
         <TextField label="Redeemed" source="redeemed" />

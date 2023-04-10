@@ -18,6 +18,17 @@ import { Type } from "class-transformer";
 @InputType()
 class CampaignCreateInput {
   @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  campaignDuration?: string | null;
+
+  @ApiProperty({
     required: true,
     type: String,
   })

@@ -1,6 +1,7 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type CampaignOrderByInput = {
+  campaignDuration?: SortOrder;
   campaignHeadline?: SortOrder;
   createdAt?: SortOrder;
   description?: SortOrder;

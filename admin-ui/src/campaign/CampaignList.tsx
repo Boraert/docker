@@ -20,6 +20,7 @@ export const CampaignList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="Campaign Duration" source="campaignDuration" />
         <TextField label="Campaign headline" source="campaignHeadline" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="Description" source="description" />
