@@ -1,6 +1,7 @@
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type CampaignUpdateInput = {
+  campaignDuration?: string | null;
   campaignHeadline?: string;
   description?: string | null;
   images?: string | null;

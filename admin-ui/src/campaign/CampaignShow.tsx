@@ -13,6 +13,7 @@ export const CampaignShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="Campaign Duration" source="campaignDuration" />
         <TextField label="Campaign headline" source="campaignHeadline" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="Description" source="description" />

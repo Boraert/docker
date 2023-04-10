@@ -19,6 +19,7 @@ import { CampaignService } from "../campaign.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  campaignDuration: "exampleCampaignDuration",
   campaignHeadline: "exampleCampaignHeadline",
   createdAt: new Date(),
   description: "exampleDescription",
@@ -29,6 +30,7 @@ const CREATE_INPUT = {
   value: "exampleValue",
 };
 const CREATE_RESULT = {
+  campaignDuration: "exampleCampaignDuration",
   campaignHeadline: "exampleCampaignHeadline",
   createdAt: new Date(),
   description: "exampleDescription",
@@ -40,6 +42,7 @@ const CREATE_RESULT = {
 };
 const FIND_MANY_RESULT = [
   {
+    campaignDuration: "exampleCampaignDuration",
     campaignHeadline: "exampleCampaignHeadline",
     createdAt: new Date(),
     description: "exampleDescription",
@@ -51,6 +54,7 @@ const FIND_MANY_RESULT = [
   },
 ];
 const FIND_ONE_RESULT = {
+  campaignDuration: "exampleCampaignDuration",
   campaignHeadline: "exampleCampaignHeadline",
   createdAt: new Date(),
   description: "exampleDescription",

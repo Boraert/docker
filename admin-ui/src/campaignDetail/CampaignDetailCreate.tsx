@@ -1,12 +1,16 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
   CreateProps,
   NumberInput,
+  TextInput,
+  DateTimeInput,
   ReferenceInput,
   SelectInput,
 } from "react-admin";
+
 import { UserTitle } from "../user/UserTitle";
 
 export const CampaignDetailCreate = (
@@ -15,6 +19,12 @@ export const CampaignDetailCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
+        <NumberInput step={1} label="Bought" source="bought" />
+        <TextInput label="Description" multiline source="description" />
+        <DateTimeInput
+          label="HoursMinutesSeconds"
+          source="hoursMinutesSeconds"
+        />
         <NumberInput
           step={1}
           label="Interaction rate"

@@ -26,6 +26,17 @@ class CampaignUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  campaignDuration?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   campaignHeadline?: string;
 
   @ApiProperty({

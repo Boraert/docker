@@ -11,14 +11,49 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringFilter } from "../../util/StringFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { StringFilter } from "../../util/StringFilter";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
 class CampaignDetailWhereInput {
+  @ApiProperty({
+    required: false,
+    type: IntNullableFilter,
+  })
+  @Type(() => IntNullableFilter)
+  @IsOptional()
+  @Field(() => IntNullableFilter, {
+    nullable: true,
+  })
+  bought?: IntNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  description?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: DateTimeNullableFilter,
+  })
+  @Type(() => DateTimeNullableFilter)
+  @IsOptional()
+  @Field(() => DateTimeNullableFilter, {
+    nullable: true,
+  })
+  hoursMinutesSeconds?: DateTimeNullableFilter;
+
   @ApiProperty({
     required: false,
     type: StringFilter,

@@ -223,7 +223,10 @@ export class UserControllerBase {
     const results = await this.service.findCampaignDetails(params.id, {
       ...query,
       select: {
+        bought: true,
         createdAt: true,
+        description: true,
+        hoursMinutesSeconds: true,
         id: true,
         interactionRate: true,
         redeemed: true,
@@ -330,6 +333,7 @@ export class UserControllerBase {
     const results = await this.service.findCampaigns(params.id, {
       ...query,
       select: {
+        campaignDuration: true,
         campaignHeadline: true,
         createdAt: true,
         description: true,
