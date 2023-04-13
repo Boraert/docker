@@ -61,6 +61,7 @@ export class CampaignDetailControllerBase {
       },
       select: {
         bought: true,
+        char: true,
         createdAt: true,
         description: true,
         hoursMinutesSeconds: true,
@@ -100,6 +101,7 @@ export class CampaignDetailControllerBase {
       ...args,
       select: {
         bought: true,
+        char: true,
         createdAt: true,
         description: true,
         hoursMinutesSeconds: true,
@@ -140,6 +142,7 @@ export class CampaignDetailControllerBase {
       where: params,
       select: {
         bought: true,
+        char: true,
         createdAt: true,
         description: true,
         hoursMinutesSeconds: true,
@@ -197,6 +200,7 @@ export class CampaignDetailControllerBase {
         },
         select: {
           bought: true,
+          char: true,
           createdAt: true,
           description: true,
           hoursMinutesSeconds: true,
@@ -245,6 +249,7 @@ export class CampaignDetailControllerBase {
         where: params,
         select: {
           bought: true,
+          char: true,
           createdAt: true,
           description: true,
           hoursMinutesSeconds: true,
