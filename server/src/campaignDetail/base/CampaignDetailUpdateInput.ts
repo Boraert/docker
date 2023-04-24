@@ -14,10 +14,13 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
   IsOptional,
+  IsJSON,
   IsString,
   IsDate,
   ValidateNested,
 } from "class-validator";
+import { GraphQLJSON } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
@@ -33,6 +36,16 @@ class CampaignDetailUpdateInput {
     nullable: true,
   })
   bought?: number | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSON()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  char?: InputJsonValue;
 
   @ApiProperty({
     required: false,

@@ -224,6 +224,7 @@ export class UserControllerBase {
       ...query,
       select: {
         bought: true,
+        char: true,
         createdAt: true,
         description: true,
         hoursMinutesSeconds: true,
