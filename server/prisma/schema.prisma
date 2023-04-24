@@ -36,6 +36,7 @@ model Campaign {
 
 model CampaignDetail {
   bought              Int?
+  char                Json?
   createdAt           DateTime  @default(now())
   description         String?
   hoursMinutesSeconds DateTime?

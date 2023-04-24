@@ -2,6 +2,7 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type CampaignDetailOrderByInput = {
   bought?: SortOrder;
+  char?: SortOrder;
   createdAt?: SortOrder;
   description?: SortOrder;
   hoursMinutesSeconds?: SortOrder;

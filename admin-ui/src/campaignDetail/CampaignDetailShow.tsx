@@ -14,6 +14,7 @@ export const CampaignDetailShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="Bought" source="bought" />
+        <TextField label="char" source="char" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="Description" source="description" />
         <TextField label="HoursMinutesSeconds" source="hoursMinutesSeconds" />
