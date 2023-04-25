@@ -17,6 +17,14 @@ import { CampaignDetailList } from "./campaignDetail/CampaignDetailList";
 import { CampaignDetailCreate } from "./campaignDetail/CampaignDetailCreate";
 import { CampaignDetailEdit } from "./campaignDetail/CampaignDetailEdit";
 import { CampaignDetailShow } from "./campaignDetail/CampaignDetailShow";
+import { BoughtDealList } from "./boughtDeal/BoughtDealList";
+import { BoughtDealCreate } from "./boughtDeal/BoughtDealCreate";
+import { BoughtDealEdit } from "./boughtDeal/BoughtDealEdit";
+import { BoughtDealShow } from "./boughtDeal/BoughtDealShow";
+import { WebsiteVisitorList } from "./websiteVisitor/WebsiteVisitorList";
+import { WebsiteVisitorCreate } from "./websiteVisitor/WebsiteVisitorCreate";
+import { WebsiteVisitorEdit } from "./websiteVisitor/WebsiteVisitorEdit";
+import { WebsiteVisitorShow } from "./websiteVisitor/WebsiteVisitorShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -63,6 +71,20 @@ const App = (): React.ReactElement => {
           edit={CampaignDetailEdit}
           create={CampaignDetailCreate}
           show={CampaignDetailShow}
+        />
+        <Resource
+          name="BoughtDeal"
+          list={BoughtDealList}
+          edit={BoughtDealEdit}
+          create={BoughtDealCreate}
+          show={BoughtDealShow}
+        />
+        <Resource
+          name="WebsiteVisitor"
+          list={WebsiteVisitorList}
+          edit={WebsiteVisitorEdit}
+          create={WebsiteVisitorCreate}
+          show={WebsiteVisitorShow}
         />
       </Admin>
     </div>

@@ -1,8 +1,11 @@
+import { BoughtDeal } from "../boughtDeal/BoughtDeal";
 import { CampaignDetail } from "../campaignDetail/CampaignDetail";
 import { Campaign } from "../campaign/Campaign";
 import { JsonValue } from "type-fest";
+import { WebsiteVisitor } from "../websiteVisitor/WebsiteVisitor";
 
 export type User = {
+  boughtDeals?: Array<BoughtDeal>;
   campaignDetails?: Array<CampaignDetail>;
   campaigns?: Array<Campaign>;
   createdAt: Date;
@@ -12,4 +15,5 @@ export type User = {
   roles: JsonValue;
   updatedAt: Date;
   username: string;
+  websiteVisitors?: Array<WebsiteVisitor>;
 };

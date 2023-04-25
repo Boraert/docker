@@ -10,14 +10,24 @@ import {
   PasswordInput,
 } from "react-admin";
 
+import { BoughtDealTitle } from "../boughtDeal/BoughtDealTitle";
 import { CampaignDetailTitle } from "../campaignDetail/CampaignDetailTitle";
 import { CampaignTitle } from "../campaign/CampaignTitle";
+import { WebsiteVisitorTitle } from "../websiteVisitor/WebsiteVisitorTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <ReferenceArrayInput
+          source="boughtDeals"
+          reference="BoughtDeal"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={BoughtDealTitle} />
+        </ReferenceArrayInput>
         <ReferenceArrayInput
           source="campaignDetails"
           reference="CampaignDetail"
@@ -44,6 +54,14 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           optionValue="value"
         />
         <TextInput label="Username" source="username" />
+        <ReferenceArrayInput
+          source="websiteVisitors"
+          reference="WebsiteVisitor"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={WebsiteVisitorTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Edit>
   );
