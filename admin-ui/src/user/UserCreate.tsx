@@ -10,23 +10,15 @@ import {
   PasswordInput,
 } from "react-admin";
 
-import { BoughtDealTitle } from "../boughtDeal/BoughtDealTitle";
 import { CampaignDetailTitle } from "../campaignDetail/CampaignDetailTitle";
 import { CampaignTitle } from "../campaign/CampaignTitle";
+import { StatisticTitle } from "../statistic/StatisticTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceArrayInput
-          source="boughtDeals"
-          reference="BoughtDeal"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={BoughtDealTitle} />
-        </ReferenceArrayInput>
         <ReferenceArrayInput
           source="campaignDetails"
           reference="CampaignDetail"
@@ -52,6 +44,14 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
+        <ReferenceArrayInput
+          source="statistics"
+          reference="Statistic"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={StatisticTitle} />
+        </ReferenceArrayInput>
         <TextInput label="Username" source="username" />
       </SimpleForm>
     </Create>

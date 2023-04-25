@@ -17,10 +17,10 @@ import { CampaignDetailList } from "./campaignDetail/CampaignDetailList";
 import { CampaignDetailCreate } from "./campaignDetail/CampaignDetailCreate";
 import { CampaignDetailEdit } from "./campaignDetail/CampaignDetailEdit";
 import { CampaignDetailShow } from "./campaignDetail/CampaignDetailShow";
-import { BoughtDealList } from "./boughtDeal/BoughtDealList";
-import { BoughtDealCreate } from "./boughtDeal/BoughtDealCreate";
-import { BoughtDealEdit } from "./boughtDeal/BoughtDealEdit";
-import { BoughtDealShow } from "./boughtDeal/BoughtDealShow";
+import { StatisticList } from "./statistic/StatisticList";
+import { StatisticCreate } from "./statistic/StatisticCreate";
+import { StatisticEdit } from "./statistic/StatisticEdit";
+import { StatisticShow } from "./statistic/StatisticShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -69,11 +69,11 @@ const App = (): React.ReactElement => {
           show={CampaignDetailShow}
         />
         <Resource
-          name="BoughtDeal"
-          list={BoughtDealList}
-          edit={BoughtDealEdit}
-          create={BoughtDealCreate}
-          show={BoughtDealShow}
+          name="Statistic"
+          list={StatisticList}
+          edit={StatisticEdit}
+          create={StatisticCreate}
+          show={StatisticShow}
         />
       </Admin>
     </div>

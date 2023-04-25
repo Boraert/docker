@@ -4,7 +4,7 @@ import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
 import { CampaignModule } from "./campaign/campaign.module";
 import { CampaignDetailModule } from "./campaignDetail/campaignDetail.module";
-import { BoughtDealModule } from "./boughtDeal/boughtDeal.module";
+import { StatisticModule } from "./statistic/statistic.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -24,7 +24,7 @@ import { AuthModule } from "./auth/auth.module";
     UserModule,
     CampaignModule,
     CampaignDetailModule,
-    BoughtDealModule,
+    StatisticModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

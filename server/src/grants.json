@@ -91,31 +91,31 @@
   },
   {
     "role": "user",
-    "resource": "BoughtDeal",
+    "resource": "Statistic",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "BoughtDeal",
+    "resource": "Statistic",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "BoughtDeal",
+    "resource": "Statistic",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "BoughtDeal",
+    "resource": "Statistic",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "BoughtDeal",
+    "resource": "Statistic",
     "action": "read:any",
     "attributes": "*"
   }

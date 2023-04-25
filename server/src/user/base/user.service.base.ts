@@ -13,9 +13,9 @@ import { PrismaService } from "../../prisma/prisma.service";
 import {
   Prisma,
   User,
-  BoughtDeal,
   CampaignDetail,
   Campaign,
+  Statistic,
 } from "@prisma/client";
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
@@ -78,17 +78,6 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
-  async findBoughtDeals(
-    parentId: string,
-    args: Prisma.BoughtDealFindManyArgs
-  ): Promise<BoughtDeal[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .boughtDeals(args);
-  }
-
   async findCampaignDetails(
     parentId: string,
     args: Prisma.CampaignDetailFindManyArgs
@@ -109,5 +98,16 @@ export class UserServiceBase {
         where: { id: parentId },
       })
       .campaigns(args);
+  }
+
+  async findStatistics(
+    parentId: string,
+    args: Prisma.StatisticFindManyArgs
+  ): Promise<Statistic[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .statistics(args);
   }
 }

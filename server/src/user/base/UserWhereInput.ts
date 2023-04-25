@@ -11,28 +11,16 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { BoughtDealListRelationFilter } from "../../boughtDeal/base/BoughtDealListRelationFilter";
+import { CampaignDetailListRelationFilter } from "../../campaignDetail/base/CampaignDetailListRelationFilter";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { CampaignDetailListRelationFilter } from "../../campaignDetail/base/CampaignDetailListRelationFilter";
 import { CampaignListRelationFilter } from "../../campaign/base/CampaignListRelationFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { StatisticListRelationFilter } from "../../statistic/base/StatisticListRelationFilter";
 
 @InputType()
 class UserWhereInput {
-  @ApiProperty({
-    required: false,
-    type: () => BoughtDealListRelationFilter,
-  })
-  @ValidateNested()
-  @Type(() => BoughtDealListRelationFilter)
-  @IsOptional()
-  @Field(() => BoughtDealListRelationFilter, {
-    nullable: true,
-  })
-  boughtDeals?: BoughtDealListRelationFilter;
-
   @ApiProperty({
     required: false,
     type: () => CampaignDetailListRelationFilter,
@@ -89,6 +77,18 @@ class UserWhereInput {
     nullable: true,
   })
   lastName?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => StatisticListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => StatisticListRelationFilter)
+  @IsOptional()
+  @Field(() => StatisticListRelationFilter, {
+    nullable: true,
+  })
+  statistics?: StatisticListRelationFilter;
 
   @ApiProperty({
     required: false,

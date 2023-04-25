@@ -19,35 +19,31 @@ import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as common from "@nestjs/common";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { CreateUserArgs } from "./CreateUserArgs";
-import { UpdateUserArgs } from "./UpdateUserArgs";
-import { DeleteUserArgs } from "./DeleteUserArgs";
-import { UserFindManyArgs } from "./UserFindManyArgs";
-import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
-import { User } from "./User";
-import { CampaignDetailFindManyArgs } from "../../campaignDetail/base/CampaignDetailFindManyArgs";
-import { CampaignDetail } from "../../campaignDetail/base/CampaignDetail";
-import { CampaignFindManyArgs } from "../../campaign/base/CampaignFindManyArgs";
-import { Campaign } from "../../campaign/base/Campaign";
-import { StatisticFindManyArgs } from "../../statistic/base/StatisticFindManyArgs";
-import { Statistic } from "../../statistic/base/Statistic";
-import { UserService } from "../user.service";
+import { CreateStatisticArgs } from "./CreateStatisticArgs";
+import { UpdateStatisticArgs } from "./UpdateStatisticArgs";
+import { DeleteStatisticArgs } from "./DeleteStatisticArgs";
+import { StatisticFindManyArgs } from "./StatisticFindManyArgs";
+import { StatisticFindUniqueArgs } from "./StatisticFindUniqueArgs";
+import { Statistic } from "./Statistic";
+import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
+import { User } from "../../user/base/User";
+import { StatisticService } from "../statistic.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
-@graphql.Resolver(() => User)
-export class UserResolverBase {
+@graphql.Resolver(() => Statistic)
+export class StatisticResolverBase {
   constructor(
-    protected readonly service: UserService,
+    protected readonly service: StatisticService,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
   @graphql.Query(() => MetaQueryPayload)
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "Statistic",
     action: "read",
     possession: "any",
   })
-  async _usersMeta(
-    @graphql.Args() args: UserFindManyArgs
+  async _statisticsMeta(
+    @graphql.Args() args: StatisticFindManyArgs
   ): Promise<MetaQueryPayload> {
     const results = await this.service.count({
       ...args,
@@ -60,24 +56,28 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => [User])
+  @graphql.Query(() => [Statistic])
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "Statistic",
     action: "read",
     possession: "any",
   })
-  async users(@graphql.Args() args: UserFindManyArgs): Promise<User[]> {
+  async statistics(
+    @graphql.Args() args: StatisticFindManyArgs
+  ): Promise<Statistic[]> {
     return this.service.findMany(args);
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => User, { nullable: true })
+  @graphql.Query(() => Statistic, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "Statistic",
     action: "read",
     possession: "own",
   })
-  async user(@graphql.Args() args: UserFindUniqueArgs): Promise<User | null> {
+  async statistic(
+    @graphql.Args() args: StatisticFindUniqueArgs
+  ): Promise<Statistic | null> {
     const result = await this.service.findOne(args);
     if (result === null) {
       return null;
@@ -86,13 +86,15 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => User)
+  @graphql.Mutation(() => Statistic)
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "Statistic",
     action: "create",
     possession: "any",
   })
-  async createUser(@graphql.Args() args: CreateUserArgs): Promise<User> {
+  async createStatistic(
+    @graphql.Args() args: CreateStatisticArgs
+  ): Promise<Statistic> {
     return await this.service.create({
       ...args,
       data: args.data,
@@ -100,13 +102,15 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => User)
+  @graphql.Mutation(() => Statistic)
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "Statistic",
     action: "update",
     possession: "any",
   })
-  async updateUser(@graphql.Args() args: UpdateUserArgs): Promise<User | null> {
+  async updateStatistic(
+    @graphql.Args() args: UpdateStatisticArgs
+  ): Promise<Statistic | null> {
     try {
       return await this.service.update({
         ...args,
@@ -122,13 +126,15 @@ export class UserResolverBase {
     }
   }
 
-  @graphql.Mutation(() => User)
+  @graphql.Mutation(() => Statistic)
   @nestAccessControl.UseRoles({
-    resource: "User",
+    resource: "Statistic",
     action: "delete",
     possession: "any",
   })
-  async deleteUser(@graphql.Args() args: DeleteUserArgs): Promise<User | null> {
+  async deleteStatistic(
+    @graphql.Args() args: DeleteStatisticArgs
+  ): Promise<Statistic | null> {
     try {
       return await this.service.delete(args);
     } catch (error) {
@@ -142,57 +148,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [CampaignDetail])
+  @graphql.ResolveField(() => [User])
   @nestAccessControl.UseRoles({
-    resource: "CampaignDetail",
+    resource: "User",
     action: "read",
     possession: "any",
   })
-  async campaignDetails(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: CampaignDetailFindManyArgs
-  ): Promise<CampaignDetail[]> {
-    const results = await this.service.findCampaignDetails(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Campaign])
-  @nestAccessControl.UseRoles({
-    resource: "Campaign",
-    action: "read",
-    possession: "any",
-  })
-  async campaigns(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: CampaignFindManyArgs
-  ): Promise<Campaign[]> {
-    const results = await this.service.findCampaigns(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Statistic])
-  @nestAccessControl.UseRoles({
-    resource: "Statistic",
-    action: "read",
-    possession: "any",
-  })
-  async statistics(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: StatisticFindManyArgs
-  ): Promise<Statistic[]> {
-    const results = await this.service.findStatistics(parent.id, args);
+  async user(
+    @graphql.Parent() parent: Statistic,
+    @graphql.Args() args: UserFindManyArgs
+  ): Promise<User[]> {
+    const results = await this.service.findUser(parent.id, args);
 
     if (!results) {
       return [];
