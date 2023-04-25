@@ -20,6 +20,7 @@ export const CampaignDetailCreate = (
     <Create {...props}>
       <SimpleForm>
         <NumberInput step={1} label="Bought" source="bought" />
+        <div />
         <TextInput label="Description" multiline source="description" />
         <DateTimeInput
           label="HoursMinutesSeconds"

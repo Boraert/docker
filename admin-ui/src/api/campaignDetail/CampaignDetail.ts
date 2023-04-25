@@ -1,7 +1,9 @@
+import { JsonValue } from "type-fest";
 import { User } from "../user/User";
 
 export type CampaignDetail = {
   bought: number | null;
+  char: JsonValue;
   createdAt: Date;
   description: string | null;
   hoursMinutesSeconds: Date | null;
