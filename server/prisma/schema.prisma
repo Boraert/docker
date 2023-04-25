@@ -8,7 +8,6 @@ generator client {
 }
 
 model User {
-  boughtDeals     BoughtDeal[]
   campaignDetails CampaignDetail[]
   campaigns       Campaign[]
   createdAt       DateTime         @default(now())
@@ -17,6 +16,7 @@ model User {
   lastName        String?
   password        String
   roles           Json
+  statistics      Statistic[]
   updatedAt       DateTime         @updatedAt
   username        String           @unique
 }
@@ -52,21 +52,11 @@ model CampaignDetail {
   websiteTraffic      Int?
 }
 
-model BoughtDeal {
-  april     Int?
-  august    Int?
-  createdAt DateTime @default(now())
-  december  Int?
-  february  Int?
-  id        String   @id @default(cuid())
-  january   Int?
-  july      Int?
-  june      Int?
-  march     Int?
-  may       Int?
-  november  Int?
-  october   Int?
-  september Int?
-  updatedAt DateTime @updatedAt
-  user      User[]
+model Statistic {
+  boughtDeals     Json?
+  createdAt       DateTime @default(now())
+  id              String   @id @default(cuid())
+  updatedAt       DateTime @updatedAt
+  user            User[]
+  websiteVisitors Json?
 }
