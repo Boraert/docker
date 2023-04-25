@@ -10,7 +10,14 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, User, CampaignDetail, Campaign } from "@prisma/client";
+import {
+  Prisma,
+  User,
+  BoughtDeal,
+  CampaignDetail,
+  Campaign,
+  WebsiteVisitor,
+} from "@prisma/client";
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
 
@@ -72,6 +79,17 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
+  async findBoughtDeals(
+    parentId: string,
+    args: Prisma.BoughtDealFindManyArgs
+  ): Promise<BoughtDeal[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .boughtDeals(args);
+  }
+
   async findCampaignDetails(
     parentId: string,
     args: Prisma.CampaignDetailFindManyArgs
@@ -92,5 +110,16 @@ export class UserServiceBase {
         where: { id: parentId },
       })
       .campaigns(args);
+  }
+
+  async findWebsiteVisitors(
+    parentId: string,
+    args: Prisma.WebsiteVisitorFindManyArgs
+  ): Promise<WebsiteVisitor[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .websiteVisitors(args);
   }
 }

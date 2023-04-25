@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { CampaignDetail } from "../../campaignDetail/base/CampaignDetail";
+import { BoughtDeal } from "../../boughtDeal/base/BoughtDeal";
 import {
   ValidateNested,
   IsOptional,
@@ -20,12 +20,23 @@ import {
   IsJSON,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { CampaignDetail } from "../../campaignDetail/base/CampaignDetail";
 import { Campaign } from "../../campaign/base/Campaign";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { WebsiteVisitor } from "../../websiteVisitor/base/WebsiteVisitor";
 
 @ObjectType()
 class User {
+  @ApiProperty({
+    required: false,
+    type: () => [BoughtDeal],
+  })
+  @ValidateNested()
+  @Type(() => BoughtDeal)
+  @IsOptional()
+  boughtDeals?: Array<BoughtDeal>;
+
   @ApiProperty({
     required: false,
     type: () => [CampaignDetail],
@@ -104,6 +115,15 @@ class User {
   @IsString()
   @Field(() => String)
   username!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => [WebsiteVisitor],
+  })
+  @ValidateNested()
+  @Type(() => WebsiteVisitor)
+  @IsOptional()
+  websiteVisitors?: Array<WebsiteVisitor>;
 }
 
 export { User as User };
