@@ -31,6 +31,7 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         >
           <Datagrid rowClick="show">
             <TextField label="Bought" source="bought" />
+            <TextField label="char" source="char" />
             <DateField source="createdAt" label="Created At" />
             <TextField label="Description" source="description" />
             <TextField

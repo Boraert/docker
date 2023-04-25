@@ -11,15 +11,28 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { CampaignDetailUpdateManyWithoutUsersInput } from "./CampaignDetailUpdateManyWithoutUsersInput";
+import { BoughtDealUpdateManyWithoutUsersInput } from "./BoughtDealUpdateManyWithoutUsersInput";
 import { ValidateNested, IsOptional, IsString, IsJSON } from "class-validator";
 import { Type } from "class-transformer";
+import { CampaignDetailUpdateManyWithoutUsersInput } from "./CampaignDetailUpdateManyWithoutUsersInput";
 import { CampaignUpdateManyWithoutUsersInput } from "./CampaignUpdateManyWithoutUsersInput";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
 
 @InputType()
 class UserUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: () => BoughtDealUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => BoughtDealUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => BoughtDealUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  boughtDeals?: BoughtDealUpdateManyWithoutUsersInput;
+
   @ApiProperty({
     required: false,
     type: () => CampaignDetailUpdateManyWithoutUsersInput,

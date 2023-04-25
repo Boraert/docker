@@ -25,6 +25,8 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { BoughtDealFindManyArgs } from "../../boughtDeal/base/BoughtDealFindManyArgs";
+import { BoughtDeal } from "../../boughtDeal/base/BoughtDeal";
 import { CampaignDetailFindManyArgs } from "../../campaignDetail/base/CampaignDetailFindManyArgs";
 import { CampaignDetail } from "../../campaignDetail/base/CampaignDetail";
 import { CampaignFindManyArgs } from "../../campaign/base/CampaignFindManyArgs";
@@ -137,6 +139,26 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [BoughtDeal])
+  @nestAccessControl.UseRoles({
+    resource: "BoughtDeal",
+    action: "read",
+    possession: "any",
+  })
+  async boughtDeals(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: BoughtDealFindManyArgs
+  ): Promise<BoughtDeal[]> {
+    const results = await this.service.findBoughtDeals(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
