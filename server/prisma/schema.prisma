@@ -60,3 +60,9 @@ model Statistic {
   user            User[]
   websiteVisitors Json?
 }
+
+model Omar {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}

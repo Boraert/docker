@@ -11,25 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsJSONValue } from "@app/custom-validators";
-import { IsOptional, IsDate, IsString, ValidateNested } from "class-validator";
-import { GraphQLJSON } from "graphql-type-json";
-import { JsonValue } from "type-fest";
+import { IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
-import { User } from "../../user/base/User";
 
 @ObjectType()
-class Statistic {
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSONValue()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  boughtDeals!: JsonValue;
-
+class Omar {
   @ApiProperty({
     required: true,
   })
@@ -53,25 +39,6 @@ class Statistic {
   @Type(() => Date)
   @Field(() => Date)
   updatedAt!: Date;
-
-  @ApiProperty({
-    required: false,
-    type: () => [User],
-  })
-  @ValidateNested()
-  @Type(() => User)
-  @IsOptional()
-  user?: Array<User>;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSONValue()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  websiteVisitors!: JsonValue;
 }
 
-export { Statistic as Statistic };
+export { Omar as Omar };

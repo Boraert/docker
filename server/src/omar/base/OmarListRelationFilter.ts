@@ -11,46 +11,46 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsJSONValue } from "@app/custom-validators";
-import { IsOptional, ValidateNested } from "class-validator";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
-import { UserUpdateManyWithoutStatisticsInput } from "./UserUpdateManyWithoutStatisticsInput";
+import { OmarWhereInput } from "./OmarWhereInput";
+import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
-class StatisticUpdateInput {
+class OmarListRelationFilter {
   @ApiProperty({
     required: false,
-  })
-  @IsJSONValue()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  boughtDeals?: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-    type: () => UserUpdateManyWithoutStatisticsInput,
+    type: () => OmarWhereInput,
   })
   @ValidateNested()
-  @Type(() => UserUpdateManyWithoutStatisticsInput)
+  @Type(() => OmarWhereInput)
   @IsOptional()
-  @Field(() => UserUpdateManyWithoutStatisticsInput, {
+  @Field(() => OmarWhereInput, {
     nullable: true,
   })
-  user?: UserUpdateManyWithoutStatisticsInput;
+  every?: OmarWhereInput;
 
   @ApiProperty({
     required: false,
+    type: () => OmarWhereInput,
   })
-  @IsJSONValue()
+  @ValidateNested()
+  @Type(() => OmarWhereInput)
   @IsOptional()
-  @Field(() => GraphQLJSON, {
+  @Field(() => OmarWhereInput, {
     nullable: true,
   })
-  websiteVisitors?: InputJsonValue;
-}
+  some?: OmarWhereInput;
 
-export { StatisticUpdateInput as StatisticUpdateInput };
+  @ApiProperty({
+    required: false,
+    type: () => OmarWhereInput,
+  })
+  @ValidateNested()
+  @Type(() => OmarWhereInput)
+  @IsOptional()
+  @Field(() => OmarWhereInput, {
+    nullable: true,
+  })
+  none?: OmarWhereInput;
+}
+export { OmarListRelationFilter as OmarListRelationFilter };

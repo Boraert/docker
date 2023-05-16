@@ -14,11 +14,11 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsInt,
   IsOptional,
-  IsJSON,
   IsDate,
   IsString,
   ValidateNested,
 } from "class-validator";
+import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
 import { Type } from "class-transformer";
@@ -40,7 +40,7 @@ class CampaignDetail {
   @ApiProperty({
     required: false,
   })
-  @IsJSON()
+  @IsJSONValue()
   @IsOptional()
   @Field(() => GraphQLJSON, {
     nullable: true,
