@@ -7,6 +7,5 @@ export type Statistic = {
   month: Date | null;
   updatedAt: Date;
   user?: User | null;
-  userId: string | null;
   websiteVisitors: number | null;
 };

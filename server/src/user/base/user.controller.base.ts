@@ -557,7 +557,6 @@ export class UserControllerBase {
           },
         },
 
-        userId: true,
         websiteVisitors: true,
       },
     });
