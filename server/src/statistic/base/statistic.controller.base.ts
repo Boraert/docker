@@ -70,7 +70,6 @@ export class StatisticControllerBase {
           },
         },
 
-        userId: true,
         websiteVisitors: true,
       },
     });
@@ -105,7 +104,6 @@ export class StatisticControllerBase {
           },
         },
 
-        userId: true,
         websiteVisitors: true,
       },
     });
@@ -141,7 +139,6 @@ export class StatisticControllerBase {
           },
         },
 
-        userId: true,
         websiteVisitors: true,
       },
     });
@@ -194,7 +191,6 @@ export class StatisticControllerBase {
             },
           },
 
-          userId: true,
           websiteVisitors: true,
         },
       });
@@ -238,7 +234,6 @@ export class StatisticControllerBase {
             },
           },
 
-          userId: true,
           websiteVisitors: true,
         },
       });

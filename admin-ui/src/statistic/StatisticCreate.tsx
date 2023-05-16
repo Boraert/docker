@@ -8,7 +8,6 @@ import {
   DateTimeInput,
   ReferenceInput,
   SelectInput,
-  TextInput,
 } from "react-admin";
 
 import { UserTitle } from "../user/UserTitle";
@@ -22,7 +21,6 @@ export const StatisticCreate = (props: CreateProps): React.ReactElement => {
         <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
-        <TextInput label="UserId" source="userId" />
         <NumberInput
           step={1}
           label="Website visitors"

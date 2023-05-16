@@ -17,7 +17,6 @@ import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
 
 @InputType()
 class StatisticWhereInput {
@@ -65,17 +64,6 @@ class StatisticWhereInput {
     nullable: true,
   })
   user?: UserWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  userId?: StringNullableFilter;
 
   @ApiProperty({
     required: false,

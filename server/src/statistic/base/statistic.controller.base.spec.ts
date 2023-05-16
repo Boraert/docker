@@ -24,7 +24,6 @@ const CREATE_INPUT = {
   id: "exampleId",
   month: new Date(),
   updatedAt: new Date(),
-  userId: "exampleUserId",
   websiteVisitors: 42,
 };
 const CREATE_RESULT = {
@@ -33,7 +32,6 @@ const CREATE_RESULT = {
   id: "exampleId",
   month: new Date(),
   updatedAt: new Date(),
-  userId: "exampleUserId",
   websiteVisitors: 42,
 };
 const FIND_MANY_RESULT = [
@@ -43,7 +41,6 @@ const FIND_MANY_RESULT = [
     id: "exampleId",
     month: new Date(),
     updatedAt: new Date(),
-    userId: "exampleUserId",
     websiteVisitors: 42,
   },
 ];
@@ -53,7 +50,6 @@ const FIND_ONE_RESULT = {
   id: "exampleId",
   month: new Date(),
   updatedAt: new Date(),
-  userId: "exampleUserId",
   websiteVisitors: 42,
 };
 

@@ -7,6 +7,5 @@ export type StatisticOrderByInput = {
   month?: SortOrder;
   updatedAt?: SortOrder;
   userId?: SortOrder;
-  userId?: SortOrder;
   websiteVisitors?: SortOrder;
 };
