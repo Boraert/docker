@@ -5,6 +5,7 @@ import { UserModule } from "./user/user.module";
 import { CampaignModule } from "./campaign/campaign.module";
 import { CampaignDetailModule } from "./campaignDetail/campaignDetail.module";
 import { StatisticModule } from "./statistic/statistic.module";
+import { CompanyDetailModule } from "./companyDetail/companyDetail.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -25,6 +26,7 @@ import { AuthModule } from "./auth/auth.module";
     CampaignModule,
     CampaignDetailModule,
     StatisticModule,
+    CompanyDetailModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

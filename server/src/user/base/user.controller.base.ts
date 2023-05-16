@@ -33,6 +33,9 @@ import { CampaignDetailWhereUniqueInput } from "../../campaignDetail/base/Campai
 import { CampaignFindManyArgs } from "../../campaign/base/CampaignFindManyArgs";
 import { Campaign } from "../../campaign/base/Campaign";
 import { CampaignWhereUniqueInput } from "../../campaign/base/CampaignWhereUniqueInput";
+import { CompanyDetailFindManyArgs } from "../../companyDetail/base/CompanyDetailFindManyArgs";
+import { CompanyDetail } from "../../companyDetail/base/CompanyDetail";
+import { CompanyDetailWhereUniqueInput } from "../../companyDetail/base/CompanyDetailWhereUniqueInput";
 import { StatisticFindManyArgs } from "../../statistic/base/StatisticFindManyArgs";
 import { Statistic } from "../../statistic/base/Statistic";
 import { StatisticWhereUniqueInput } from "../../statistic/base/StatisticWhereUniqueInput";
@@ -419,6 +422,109 @@ export class UserControllerBase {
   ): Promise<void> {
     const data = {
       campaigns: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/companyDetails")
+  @ApiNestedQuery(CompanyDetailFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "CompanyDetail",
+    action: "read",
+    possession: "any",
+  })
+  async findManyCompanyDetails(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<CompanyDetail[]> {
+    const query = plainToClass(CompanyDetailFindManyArgs, request.query);
+    const results = await this.service.findCompanyDetails(params.id, {
+      ...query,
+      select: {
+        approvalStatus: true,
+        businessAddress: true,
+        createdAt: true,
+        id: true,
+        updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/companyDetails")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectCompanyDetails(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: CompanyDetailWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      companyDetails: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/companyDetails")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateCompanyDetails(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: CompanyDetailWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      companyDetails: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/companyDetails")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectCompanyDetails(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: CompanyDetailWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      companyDetails: {
         disconnect: body,
       },
     };

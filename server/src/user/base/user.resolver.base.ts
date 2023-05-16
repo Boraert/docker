@@ -29,6 +29,8 @@ import { CampaignDetailFindManyArgs } from "../../campaignDetail/base/CampaignDe
 import { CampaignDetail } from "../../campaignDetail/base/CampaignDetail";
 import { CampaignFindManyArgs } from "../../campaign/base/CampaignFindManyArgs";
 import { Campaign } from "../../campaign/base/Campaign";
+import { CompanyDetailFindManyArgs } from "../../companyDetail/base/CompanyDetailFindManyArgs";
+import { CompanyDetail } from "../../companyDetail/base/CompanyDetail";
 import { StatisticFindManyArgs } from "../../statistic/base/StatisticFindManyArgs";
 import { Statistic } from "../../statistic/base/Statistic";
 import { UserService } from "../user.service";
@@ -142,13 +144,13 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [CampaignDetail])
+  @graphql.ResolveField(() => [CampaignDetail], { name: "campaignDetails" })
   @nestAccessControl.UseRoles({
     resource: "CampaignDetail",
     action: "read",
     possession: "any",
   })
-  async campaignDetails(
+  async resolveFieldCampaignDetails(
     @graphql.Parent() parent: User,
     @graphql.Args() args: CampaignDetailFindManyArgs
   ): Promise<CampaignDetail[]> {
@@ -162,13 +164,13 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Campaign])
+  @graphql.ResolveField(() => [Campaign], { name: "campaigns" })
   @nestAccessControl.UseRoles({
     resource: "Campaign",
     action: "read",
     possession: "any",
   })
-  async campaigns(
+  async resolveFieldCampaigns(
     @graphql.Parent() parent: User,
     @graphql.Args() args: CampaignFindManyArgs
   ): Promise<Campaign[]> {
@@ -182,13 +184,33 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Statistic])
+  @graphql.ResolveField(() => [CompanyDetail], { name: "companyDetails" })
+  @nestAccessControl.UseRoles({
+    resource: "CompanyDetail",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldCompanyDetails(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: CompanyDetailFindManyArgs
+  ): Promise<CompanyDetail[]> {
+    const results = await this.service.findCompanyDetails(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Statistic], { name: "statistics" })
   @nestAccessControl.UseRoles({
     resource: "Statistic",
     action: "read",
     possession: "any",
   })
-  async statistics(
+  async resolveFieldStatistics(
     @graphql.Parent() parent: User,
     @graphql.Args() args: StatisticFindManyArgs
   ): Promise<Statistic[]> {

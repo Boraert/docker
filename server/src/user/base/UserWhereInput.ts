@@ -15,6 +15,7 @@ import { CampaignDetailListRelationFilter } from "../../campaignDetail/base/Camp
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { CampaignListRelationFilter } from "../../campaign/base/CampaignListRelationFilter";
+import { CompanyDetailListRelationFilter } from "../../companyDetail/base/CompanyDetailListRelationFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { StatisticListRelationFilter } from "../../statistic/base/StatisticListRelationFilter";
@@ -44,6 +45,18 @@ class UserWhereInput {
     nullable: true,
   })
   campaigns?: CampaignListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => CompanyDetailListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => CompanyDetailListRelationFilter)
+  @IsOptional()
+  @Field(() => CompanyDetailListRelationFilter, {
+    nullable: true,
+  })
+  companyDetails?: CompanyDetailListRelationFilter;
 
   @ApiProperty({
     required: false,
