@@ -1,5 +1,5 @@
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
-export type UserCreateNestedManyWithoutStatisticsInput = {
+export type UserCreateNestedManyWithoutCompanyDetailsInput = {
   connect?: Array<UserWhereUniqueInput>;
 };

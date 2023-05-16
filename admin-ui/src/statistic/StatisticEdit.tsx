@@ -1,27 +1,33 @@
 import * as React from "react";
+
 import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceArrayInput,
-  SelectArrayInput,
+  NumberInput,
+  DateTimeInput,
+  ReferenceInput,
+  SelectInput,
+  TextInput,
 } from "react-admin";
+
 import { UserTitle } from "../user/UserTitle";
 
 export const StatisticEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <div />
-        <ReferenceArrayInput
-          source="user"
-          reference="User"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={UserTitle} />
-        </ReferenceArrayInput>
-        <div />
+        <NumberInput step={1} label="Bought Deals" source="boughtDeals" />
+        <DateTimeInput label="Month" source="month" />
+        <ReferenceInput source="user.id" reference="User" label="User">
+          <SelectInput optionText={UserTitle} />
+        </ReferenceInput>
+        <TextInput label="UserId" source="userId" />
+        <NumberInput
+          step={1}
+          label="Website visitors"
+          source="websiteVisitors"
+        />
       </SimpleForm>
     </Edit>
   );

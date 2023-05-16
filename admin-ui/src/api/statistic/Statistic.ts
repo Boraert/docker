@@ -1,11 +1,12 @@
-import { JsonValue } from "type-fest";
 import { User } from "../user/User";
 
 export type Statistic = {
-  boughtDeals: JsonValue;
+  boughtDeals: number | null;
   createdAt: Date;
   id: string;
+  month: Date | null;
   updatedAt: Date;
-  user?: Array<User>;
-  websiteVisitors: JsonValue;
+  user?: User | null;
+  userId: string | null;
+  websiteVisitors: number | null;
 };

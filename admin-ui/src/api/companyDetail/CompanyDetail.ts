@@ -6,5 +6,5 @@ export type CompanyDetail = {
   createdAt: Date;
   id: string;
   updatedAt: Date;
-  user?: User | null;
+  user?: Array<User>;
 };

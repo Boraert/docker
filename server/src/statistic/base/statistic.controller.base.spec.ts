@@ -19,26 +19,42 @@ import { StatisticService } from "../statistic.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  boughtDeals: 42,
   createdAt: new Date(),
   id: "exampleId",
+  month: new Date(),
   updatedAt: new Date(),
+  userId: "exampleUserId",
+  websiteVisitors: 42,
 };
 const CREATE_RESULT = {
+  boughtDeals: 42,
   createdAt: new Date(),
   id: "exampleId",
+  month: new Date(),
   updatedAt: new Date(),
+  userId: "exampleUserId",
+  websiteVisitors: 42,
 };
 const FIND_MANY_RESULT = [
   {
+    boughtDeals: 42,
     createdAt: new Date(),
     id: "exampleId",
+    month: new Date(),
     updatedAt: new Date(),
+    userId: "exampleUserId",
+    websiteVisitors: 42,
   },
 ];
 const FIND_ONE_RESULT = {
+  boughtDeals: 42,
   createdAt: new Date(),
   id: "exampleId",
+  month: new Date(),
   updatedAt: new Date(),
+  userId: "exampleUserId",
+  websiteVisitors: 42,
 };
 
 const service = {
@@ -124,6 +140,7 @@ describe("Statistic", () => {
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
+        month: CREATE_RESULT.month.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       });
   });
@@ -136,6 +153,7 @@ describe("Statistic", () => {
         {
           ...FIND_MANY_RESULT[0],
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
+          month: FIND_MANY_RESULT[0].month.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
       ]);
@@ -159,6 +177,7 @@ describe("Statistic", () => {
       .expect({
         ...FIND_ONE_RESULT,
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
+        month: FIND_ONE_RESULT.month.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
       });
   });
@@ -172,6 +191,7 @@ describe("Statistic", () => {
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
+        month: CREATE_RESULT.month.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       })
       .then(function () {

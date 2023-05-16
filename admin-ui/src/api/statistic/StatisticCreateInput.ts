@@ -1,8 +1,9 @@
-import { InputJsonValue } from "../../types";
-import { UserCreateNestedManyWithoutStatisticsInput } from "./UserCreateNestedManyWithoutStatisticsInput";
+import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type StatisticCreateInput = {
-  boughtDeals?: InputJsonValue;
-  user?: UserCreateNestedManyWithoutStatisticsInput;
-  websiteVisitors?: InputJsonValue;
+  boughtDeals?: number | null;
+  month?: Date | null;
+  user?: UserWhereUniqueInput | null;
+  userId?: string | null;
+  websiteVisitors?: number | null;
 };

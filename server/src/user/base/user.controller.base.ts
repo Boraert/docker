@@ -453,12 +453,6 @@ export class UserControllerBase {
         createdAt: true,
         id: true,
         updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (results === null) {
@@ -554,7 +548,16 @@ export class UserControllerBase {
         boughtDeals: true,
         createdAt: true,
         id: true,
+        month: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+
+        userId: true,
         websiteVisitors: true,
       },
     });

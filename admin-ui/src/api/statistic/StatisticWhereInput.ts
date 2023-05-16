@@ -1,10 +1,14 @@
-import { JsonFilter } from "../../util/JsonFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { UserListRelationFilter } from "../user/UserListRelationFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 
 export type StatisticWhereInput = {
-  boughtDeals?: JsonFilter;
+  boughtDeals?: IntNullableFilter;
   id?: StringFilter;
-  user?: UserListRelationFilter;
-  websiteVisitors?: JsonFilter;
+  month?: DateTimeNullableFilter;
+  user?: UserWhereUniqueInput;
+  userId?: StringNullableFilter;
+  websiteVisitors?: IntNullableFilter;
 };

@@ -11,10 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsJSONValue } from "@app/custom-validators";
-import { IsOptional, IsDate, IsString, ValidateNested } from "class-validator";
-import { GraphQLJSON } from "graphql-type-json";
-import { JsonValue } from "type-fest";
+import {
+  IsInt,
+  IsOptional,
+  IsDate,
+  IsString,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
 
@@ -22,13 +25,14 @@ import { User } from "../../user/base/User";
 class Statistic {
   @ApiProperty({
     required: false,
+    type: Number,
   })
-  @IsJSONValue()
+  @IsInt()
   @IsOptional()
-  @Field(() => GraphQLJSON, {
+  @Field(() => Number, {
     nullable: true,
   })
-  boughtDeals!: JsonValue;
+  boughtDeals!: number | null;
 
   @ApiProperty({
     required: true,
@@ -47,6 +51,17 @@ class Statistic {
   id!: string;
 
   @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  month!: Date | null;
+
+  @ApiProperty({
     required: true,
   })
   @IsDate()
@@ -56,22 +71,34 @@ class Statistic {
 
   @ApiProperty({
     required: false,
-    type: () => [User],
+    type: () => User,
   })
   @ValidateNested()
   @Type(() => User)
   @IsOptional()
-  user?: Array<User>;
+  user?: User | null;
 
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsJSONValue()
+  @IsString()
   @IsOptional()
-  @Field(() => GraphQLJSON, {
+  @Field(() => String, {
     nullable: true,
   })
-  websiteVisitors!: JsonValue;
+  userId!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
+  @IsInt()
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  websiteVisitors!: number | null;
 }
 
 export { Statistic as Statistic };

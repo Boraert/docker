@@ -47,14 +47,11 @@ export class StatisticServiceBase {
     return this.prisma.statistic.delete(args);
   }
 
-  async findUser(
-    parentId: string,
-    args: Prisma.UserFindManyArgs
-  ): Promise<User[]> {
+  async getUser(parentId: string): Promise<User | null> {
     return this.prisma.statistic
-      .findUniqueOrThrow({
+      .findUnique({
         where: { id: parentId },
       })
-      .user(args);
+      .user();
   }
 }

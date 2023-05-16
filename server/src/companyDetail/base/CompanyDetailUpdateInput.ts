@@ -17,7 +17,7 @@ import {
   IsString,
   ValidateNested,
 } from "class-validator";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { UserUpdateManyWithoutCompanyDetailsInput } from "./UserUpdateManyWithoutCompanyDetailsInput";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -46,15 +46,15 @@ class CompanyDetailUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => UserWhereUniqueInput,
+    type: () => UserUpdateManyWithoutCompanyDetailsInput,
   })
   @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
+  @Type(() => UserUpdateManyWithoutCompanyDetailsInput)
   @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
+  @Field(() => UserUpdateManyWithoutCompanyDetailsInput, {
     nullable: true,
   })
-  user?: UserWhereUniqueInput | null;
+  user?: UserUpdateManyWithoutCompanyDetailsInput;
 }
 
 export { CompanyDetailUpdateInput as CompanyDetailUpdateInput };

@@ -14,7 +14,7 @@ import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { ApiProperty } from "@nestjs/swagger";
 
 @InputType()
-class UserCreateNestedManyWithoutStatisticsInput {
+class UserCreateNestedManyWithoutCompanyDetailsInput {
   @Field(() => [UserWhereUniqueInput], {
     nullable: true,
   })
@@ -25,4 +25,4 @@ class UserCreateNestedManyWithoutStatisticsInput {
   connect?: Array<UserWhereUniqueInput>;
 }
 
-export { UserCreateNestedManyWithoutStatisticsInput as UserCreateNestedManyWithoutStatisticsInput };
+export { UserCreateNestedManyWithoutCompanyDetailsInput as UserCreateNestedManyWithoutCompanyDetailsInput };
