@@ -12,9 +12,11 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { CampaignDetailCreateNestedManyWithoutUsersInput } from "./CampaignDetailCreateNestedManyWithoutUsersInput";
-import { ValidateNested, IsOptional, IsString, IsJSON } from "class-validator";
+import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { CampaignCreateNestedManyWithoutUsersInput } from "./CampaignCreateNestedManyWithoutUsersInput";
+import { CompanyDetailCreateNestedManyWithoutUsersInput } from "./CompanyDetailCreateNestedManyWithoutUsersInput";
+import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
 import { StatisticCreateNestedManyWithoutUsersInput } from "./StatisticCreateNestedManyWithoutUsersInput";
@@ -44,6 +46,18 @@ class UserCreateInput {
     nullable: true,
   })
   campaigns?: CampaignCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => CompanyDetailCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => CompanyDetailCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => CompanyDetailCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  companyDetails?: CompanyDetailCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
@@ -78,7 +92,7 @@ class UserCreateInput {
   @ApiProperty({
     required: true,
   })
-  @IsJSON()
+  @IsJSONValue()
   @Field(() => GraphQLJSON)
   roles!: InputJsonValue;
 

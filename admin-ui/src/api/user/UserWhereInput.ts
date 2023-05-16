@@ -1,5 +1,6 @@
 import { CampaignDetailListRelationFilter } from "../campaignDetail/CampaignDetailListRelationFilter";
 import { CampaignListRelationFilter } from "../campaign/CampaignListRelationFilter";
+import { CompanyDetailListRelationFilter } from "../companyDetail/CompanyDetailListRelationFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { StatisticListRelationFilter } from "../statistic/StatisticListRelationFilter";
@@ -7,6 +8,7 @@ import { StatisticListRelationFilter } from "../statistic/StatisticListRelationF
 export type UserWhereInput = {
   campaignDetails?: CampaignDetailListRelationFilter;
   campaigns?: CampaignListRelationFilter;
+  companyDetails?: CompanyDetailListRelationFilter;
   firstName?: StringNullableFilter;
   id?: StringFilter;
   lastName?: StringNullableFilter;

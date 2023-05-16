@@ -21,6 +21,10 @@ import { StatisticList } from "./statistic/StatisticList";
 import { StatisticCreate } from "./statistic/StatisticCreate";
 import { StatisticEdit } from "./statistic/StatisticEdit";
 import { StatisticShow } from "./statistic/StatisticShow";
+import { CompanyDetailList } from "./companyDetail/CompanyDetailList";
+import { CompanyDetailCreate } from "./companyDetail/CompanyDetailCreate";
+import { CompanyDetailEdit } from "./companyDetail/CompanyDetailEdit";
+import { CompanyDetailShow } from "./companyDetail/CompanyDetailShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -74,6 +78,13 @@ const App = (): React.ReactElement => {
           edit={StatisticEdit}
           create={StatisticCreate}
           show={StatisticShow}
+        />
+        <Resource
+          name="CompanyDetail"
+          list={CompanyDetailList}
+          edit={CompanyDetailEdit}
+          create={CompanyDetailCreate}
+          show={CompanyDetailShow}
         />
       </Admin>
     </div>
