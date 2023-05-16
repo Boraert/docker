@@ -148,13 +148,13 @@ export class StatisticResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [User])
+  @graphql.ResolveField(() => [User], { name: "user" })
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "read",
     possession: "any",
   })
-  async user(
+  async resolveFieldUser(
     @graphql.Parent() parent: Statistic,
     @graphql.Args() args: UserFindManyArgs
   ): Promise<User[]> {

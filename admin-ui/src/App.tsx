@@ -21,6 +21,10 @@ import { StatisticList } from "./statistic/StatisticList";
 import { StatisticCreate } from "./statistic/StatisticCreate";
 import { StatisticEdit } from "./statistic/StatisticEdit";
 import { StatisticShow } from "./statistic/StatisticShow";
+import { OmarList } from "./omar/OmarList";
+import { OmarCreate } from "./omar/OmarCreate";
+import { OmarEdit } from "./omar/OmarEdit";
+import { OmarShow } from "./omar/OmarShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -74,6 +78,13 @@ const App = (): React.ReactElement => {
           edit={StatisticEdit}
           create={StatisticCreate}
           show={StatisticShow}
+        />
+        <Resource
+          name="Omar"
+          list={OmarList}
+          edit={OmarEdit}
+          create={OmarCreate}
+          show={OmarShow}
         />
       </Admin>
     </div>

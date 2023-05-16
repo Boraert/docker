@@ -163,13 +163,18 @@ export class CampaignResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => User, { nullable: true })
+  @graphql.ResolveField(() => User, {
+    nullable: true,
+    name: "user",
+  })
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "read",
     possession: "any",
   })
-  async user(@graphql.Parent() parent: Campaign): Promise<User | null> {
+  async resolveFieldUser(
+    @graphql.Parent() parent: Campaign
+  ): Promise<User | null> {
     const result = await this.service.getUser(parent.id);
 
     if (!result) {
