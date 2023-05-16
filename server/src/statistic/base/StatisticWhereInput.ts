@@ -11,24 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { JsonFilter } from "../../util/JsonFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
-import { UserListRelationFilter } from "../../user/base/UserListRelationFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 
 @InputType()
 class StatisticWhereInput {
   @ApiProperty({
     required: false,
-    type: JsonFilter,
+    type: IntNullableFilter,
   })
-  @Type(() => JsonFilter)
+  @Type(() => IntNullableFilter)
   @IsOptional()
-  @Field(() => JsonFilter, {
+  @Field(() => IntNullableFilter, {
     nullable: true,
   })
-  boughtDeals?: JsonFilter;
+  boughtDeals?: IntNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -43,26 +45,48 @@ class StatisticWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => UserListRelationFilter,
+    type: DateTimeNullableFilter,
   })
-  @ValidateNested()
-  @Type(() => UserListRelationFilter)
+  @Type(() => DateTimeNullableFilter)
   @IsOptional()
-  @Field(() => UserListRelationFilter, {
+  @Field(() => DateTimeNullableFilter, {
     nullable: true,
   })
-  user?: UserListRelationFilter;
+  month?: DateTimeNullableFilter;
 
   @ApiProperty({
     required: false,
-    type: JsonFilter,
+    type: () => UserWhereUniqueInput,
   })
-  @Type(() => JsonFilter)
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
   @IsOptional()
-  @Field(() => JsonFilter, {
+  @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  websiteVisitors?: JsonFilter;
+  user?: UserWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  userId?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: IntNullableFilter,
+  })
+  @Type(() => IntNullableFilter)
+  @IsOptional()
+  @Field(() => IntNullableFilter, {
+    nullable: true,
+  })
+  websiteVisitors?: IntNullableFilter;
 }
 
 export { StatisticWhereInput as StatisticWhereInput };

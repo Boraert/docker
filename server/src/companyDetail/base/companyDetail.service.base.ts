@@ -47,11 +47,14 @@ export class CompanyDetailServiceBase {
     return this.prisma.companyDetail.delete(args);
   }
 
-  async getUser(parentId: string): Promise<User | null> {
+  async findUser(
+    parentId: string,
+    args: Prisma.UserFindManyArgs
+  ): Promise<User[]> {
     return this.prisma.companyDetail
-      .findUnique({
+      .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .user();
+      .user(args);
   }
 }

@@ -54,12 +54,15 @@ model CampaignDetail {
 }
 
 model Statistic {
-  boughtDeals     Json?
-  createdAt       DateTime @default(now())
-  id              String   @id @default(cuid())
-  updatedAt       DateTime @updatedAt
-  user            User[]
-  websiteVisitors Json?
+  boughtDeals     Int?
+  createdAt       DateTime  @default(now())
+  id              String    @id @default(cuid())
+  month           DateTime? @unique
+  updatedAt       DateTime  @updatedAt
+  user            User?     @relation(fields: [userId], references: [id])
+  userId          String?
+  userId          String?
+  websiteVisitors Int?
 }
 
 model CompanyDetail {
@@ -68,6 +71,5 @@ model CompanyDetail {
   createdAt       DateTime @default(now())
   id              String   @id @default(cuid())
   updatedAt       DateTime @updatedAt
-  user            User?    @relation(fields: [userId], references: [id])
-  userId          String?
+  user            User[]
 }

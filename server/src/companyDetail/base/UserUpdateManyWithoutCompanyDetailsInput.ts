@@ -14,7 +14,7 @@ import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { ApiProperty } from "@nestjs/swagger";
 
 @InputType()
-class UserUpdateManyWithoutStatisticsInput {
+class UserUpdateManyWithoutCompanyDetailsInput {
   @Field(() => [UserWhereUniqueInput], {
     nullable: true,
   })
@@ -43,4 +43,4 @@ class UserUpdateManyWithoutStatisticsInput {
   set?: Array<UserWhereUniqueInput>;
 }
 
-export { UserUpdateManyWithoutStatisticsInput as UserUpdateManyWithoutStatisticsInput };
+export { UserUpdateManyWithoutCompanyDetailsInput as UserUpdateManyWithoutCompanyDetailsInput };

@@ -1,7 +1,7 @@
-import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { UserUpdateManyWithoutCompanyDetailsInput } from "./UserUpdateManyWithoutCompanyDetailsInput";
 
 export type CompanyDetailUpdateInput = {
   approvalStatus?: boolean | null;
   businessAddress?: string | null;
-  user?: UserWhereUniqueInput | null;
+  user?: UserUpdateManyWithoutCompanyDetailsInput;
 };

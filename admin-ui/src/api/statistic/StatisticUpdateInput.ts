@@ -1,8 +1,9 @@
-import { InputJsonValue } from "../../types";
-import { UserUpdateManyWithoutStatisticsInput } from "./UserUpdateManyWithoutStatisticsInput";
+import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type StatisticUpdateInput = {
-  boughtDeals?: InputJsonValue;
-  user?: UserUpdateManyWithoutStatisticsInput;
-  websiteVisitors?: InputJsonValue;
+  boughtDeals?: number | null;
+  month?: Date | null;
+  user?: UserWhereUniqueInput | null;
+  userId?: string | null;
+  websiteVisitors?: number | null;
 };

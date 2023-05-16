@@ -6,5 +6,4 @@ export type CompanyDetailOrderByInput = {
   createdAt?: SortOrder;
   id?: SortOrder;
   updatedAt?: SortOrder;
-  userId?: SortOrder;
 };
