@@ -1,8 +1,9 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type CampaignOrderByInput = {
-  campaignDuration?: SortOrder;
+  campaigEendTime?: SortOrder;
   campaignHeadline?: SortOrder;
+  campaignStartTime?: SortOrder;
   createdAt?: SortOrder;
   description?: SortOrder;
   id?: SortOrder;

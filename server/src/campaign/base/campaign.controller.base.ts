@@ -58,8 +58,9 @@ export class CampaignControllerBase {
           : undefined,
       },
       select: {
-        campaignDuration: true,
+        campaigEendTime: true,
         campaignHeadline: true,
+        campaignStartTime: true,
         createdAt: true,
         description: true,
         id: true,
@@ -95,8 +96,9 @@ export class CampaignControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        campaignDuration: true,
+        campaigEendTime: true,
         campaignHeadline: true,
+        campaignStartTime: true,
         createdAt: true,
         description: true,
         id: true,
@@ -133,8 +135,9 @@ export class CampaignControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        campaignDuration: true,
+        campaigEendTime: true,
         campaignHeadline: true,
+        campaignStartTime: true,
         createdAt: true,
         description: true,
         id: true,
@@ -188,8 +191,9 @@ export class CampaignControllerBase {
             : undefined,
         },
         select: {
-          campaignDuration: true,
+          campaigEendTime: true,
           campaignHeadline: true,
+          campaignStartTime: true,
           createdAt: true,
           description: true,
           id: true,
@@ -234,8 +238,9 @@ export class CampaignControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          campaignDuration: true,
+          campaigEendTime: true,
           campaignHeadline: true,
+          campaignStartTime: true,
           createdAt: true,
           description: true,
           id: true,

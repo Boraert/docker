@@ -340,8 +340,9 @@ export class UserControllerBase {
     const results = await this.service.findCampaigns(params.id, {
       ...query,
       select: {
-        campaignDuration: true,
+        campaigEendTime: true,
         campaignHeadline: true,
+        campaignStartTime: true,
         createdAt: true,
         description: true,
         id: true,

@@ -4,6 +4,7 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  DateTimeInput,
   TextInput,
   NumberInput,
   ReferenceInput,
@@ -16,8 +17,9 @@ export const CampaignEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="Campaign Duration" source="campaignDuration" />
+        <DateTimeInput label="CampaigEendTime" source="campaigEendTime" />
         <TextInput label="Campaign headline" source="campaignHeadline" />
+        <DateTimeInput label="CampaignStartTime" source="campaignStartTime" />
         <TextInput label="Description" multiline source="description" />
         <TextInput label="Images" multiline source="images" />
         <NumberInput step={1} label="Quantity" source="quantity" />

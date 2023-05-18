@@ -12,9 +12,9 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsString,
-  IsOptional,
   IsDate,
+  IsOptional,
+  IsString,
   IsInt,
   ValidateNested,
 } from "class-validator";
@@ -25,14 +25,14 @@ import { User } from "../../user/base/User";
 class Campaign {
   @ApiProperty({
     required: false,
-    type: String,
   })
-  @IsString()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Date, {
     nullable: true,
   })
-  campaignDuration!: string | null;
+  campaigEendTime!: Date | null;
 
   @ApiProperty({
     required: true,
@@ -41,6 +41,17 @@ class Campaign {
   @IsString()
   @Field(() => String)
   campaignHeadline!: string;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  campaignStartTime!: Date | null;
 
   @ApiProperty({
     required: true,
