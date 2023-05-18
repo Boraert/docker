@@ -1,8 +1,9 @@
 import { User } from "../user/User";
 
 export type Campaign = {
-  campaignDuration: string | null;
+  campaigEendTime: Date | null;
   campaignHeadline: string;
+  campaignStartTime: Date | null;
   createdAt: Date;
   description: string | null;
   id: string;

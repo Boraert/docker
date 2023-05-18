@@ -19,8 +19,9 @@ import { CampaignService } from "../campaign.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  campaignDuration: "exampleCampaignDuration",
+  campaigEendTime: new Date(),
   campaignHeadline: "exampleCampaignHeadline",
+  campaignStartTime: new Date(),
   createdAt: new Date(),
   description: "exampleDescription",
   id: "exampleId",
@@ -30,8 +31,9 @@ const CREATE_INPUT = {
   value: "exampleValue",
 };
 const CREATE_RESULT = {
-  campaignDuration: "exampleCampaignDuration",
+  campaigEendTime: new Date(),
   campaignHeadline: "exampleCampaignHeadline",
+  campaignStartTime: new Date(),
   createdAt: new Date(),
   description: "exampleDescription",
   id: "exampleId",
@@ -42,8 +44,9 @@ const CREATE_RESULT = {
 };
 const FIND_MANY_RESULT = [
   {
-    campaignDuration: "exampleCampaignDuration",
+    campaigEendTime: new Date(),
     campaignHeadline: "exampleCampaignHeadline",
+    campaignStartTime: new Date(),
     createdAt: new Date(),
     description: "exampleDescription",
     id: "exampleId",
@@ -54,8 +57,9 @@ const FIND_MANY_RESULT = [
   },
 ];
 const FIND_ONE_RESULT = {
-  campaignDuration: "exampleCampaignDuration",
+  campaigEendTime: new Date(),
   campaignHeadline: "exampleCampaignHeadline",
+  campaignStartTime: new Date(),
   createdAt: new Date(),
   description: "exampleDescription",
   id: "exampleId",
@@ -147,6 +151,8 @@ describe("Campaign", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
+        campaigEendTime: CREATE_RESULT.campaigEendTime.toISOString(),
+        campaignStartTime: CREATE_RESULT.campaignStartTime.toISOString(),
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       });
@@ -159,6 +165,9 @@ describe("Campaign", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
+          campaigEendTime: FIND_MANY_RESULT[0].campaigEendTime.toISOString(),
+          campaignStartTime:
+            FIND_MANY_RESULT[0].campaignStartTime.toISOString(),
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
@@ -182,6 +191,8 @@ describe("Campaign", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
+        campaigEendTime: FIND_ONE_RESULT.campaigEendTime.toISOString(),
+        campaignStartTime: FIND_ONE_RESULT.campaignStartTime.toISOString(),
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
       });
@@ -195,6 +206,8 @@ describe("Campaign", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
+        campaigEendTime: CREATE_RESULT.campaigEendTime.toISOString(),
+        campaignStartTime: CREATE_RESULT.campaignStartTime.toISOString(),
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       })

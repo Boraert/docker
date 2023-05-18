@@ -11,22 +11,28 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import {
+  IsDate,
+  IsOptional,
+  IsString,
+  IsInt,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
+import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
 class CampaignCreateInput {
   @ApiProperty({
     required: false,
-    type: String,
   })
-  @IsString()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Date, {
     nullable: true,
   })
-  campaignDuration?: string | null;
+  campaigEendTime?: Date | null;
 
   @ApiProperty({
     required: true,
@@ -35,6 +41,17 @@ class CampaignCreateInput {
   @IsString()
   @Field(() => String)
   campaignHeadline!: string;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  campaignStartTime?: Date | null;
 
   @ApiProperty({
     required: false,

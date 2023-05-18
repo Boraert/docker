@@ -25,7 +25,7 @@ class CampaignOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  campaignDuration?: SortOrder;
+  campaigEendTime?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -35,6 +35,15 @@ class CampaignOrderByInput {
     nullable: true,
   })
   campaignHeadline?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  campaignStartTime?: SortOrder;
 
   @ApiProperty({
     required: false,
