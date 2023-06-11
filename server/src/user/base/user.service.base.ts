@@ -15,7 +15,7 @@ import {
   User,
   CampaignDetail,
   Campaign,
-  CompanyDetail,
+  CompanyRegistration,
   Statistic,
 } from "@prisma/client";
 import { PasswordService } from "../../auth/password.service";
@@ -103,8 +103,8 @@ export class UserServiceBase {
 
   async findCompanyDetails(
     parentId: string,
-    args: Prisma.CompanyDetailFindManyArgs
-  ): Promise<CompanyDetail[]> {
+    args: Prisma.CompanyRegistrationFindManyArgs
+  ): Promise<CompanyRegistration[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },

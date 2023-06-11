@@ -29,8 +29,8 @@ import { CampaignDetailFindManyArgs } from "../../campaignDetail/base/CampaignDe
 import { CampaignDetail } from "../../campaignDetail/base/CampaignDetail";
 import { CampaignFindManyArgs } from "../../campaign/base/CampaignFindManyArgs";
 import { Campaign } from "../../campaign/base/Campaign";
-import { CompanyDetailFindManyArgs } from "../../companyDetail/base/CompanyDetailFindManyArgs";
-import { CompanyDetail } from "../../companyDetail/base/CompanyDetail";
+import { CompanyRegistrationFindManyArgs } from "../../companyRegistration/base/CompanyRegistrationFindManyArgs";
+import { CompanyRegistration } from "../../companyRegistration/base/CompanyRegistration";
 import { StatisticFindManyArgs } from "../../statistic/base/StatisticFindManyArgs";
 import { Statistic } from "../../statistic/base/Statistic";
 import { UserService } from "../user.service";
@@ -184,16 +184,16 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [CompanyDetail], { name: "companyDetails" })
+  @graphql.ResolveField(() => [CompanyRegistration], { name: "companyDetails" })
   @nestAccessControl.UseRoles({
-    resource: "CompanyDetail",
+    resource: "CompanyRegistration",
     action: "read",
     possession: "any",
   })
   async resolveFieldCompanyDetails(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: CompanyDetailFindManyArgs
-  ): Promise<CompanyDetail[]> {
+    @graphql.Args() args: CompanyRegistrationFindManyArgs
+  ): Promise<CompanyRegistration[]> {
     const results = await this.service.findCompanyDetails(parent.id, args);
 
     if (!results) {

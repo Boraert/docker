@@ -15,7 +15,7 @@ import { CampaignDetailCreateNestedManyWithoutUsersInput } from "./CampaignDetai
 import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { CampaignCreateNestedManyWithoutUsersInput } from "./CampaignCreateNestedManyWithoutUsersInput";
-import { CompanyDetailCreateNestedManyWithoutUsersInput } from "./CompanyDetailCreateNestedManyWithoutUsersInput";
+import { CompanyRegistrationCreateNestedManyWithoutUsersInput } from "./CompanyRegistrationCreateNestedManyWithoutUsersInput";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
@@ -49,15 +49,15 @@ class UserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => CompanyDetailCreateNestedManyWithoutUsersInput,
+    type: () => CompanyRegistrationCreateNestedManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => CompanyDetailCreateNestedManyWithoutUsersInput)
+  @Type(() => CompanyRegistrationCreateNestedManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => CompanyDetailCreateNestedManyWithoutUsersInput, {
+  @Field(() => CompanyRegistrationCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  companyDetails?: CompanyDetailCreateNestedManyWithoutUsersInput;
+  companyDetails?: CompanyRegistrationCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

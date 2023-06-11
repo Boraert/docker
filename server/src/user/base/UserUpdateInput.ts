@@ -15,7 +15,7 @@ import { CampaignDetailUpdateManyWithoutUsersInput } from "./CampaignDetailUpdat
 import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { CampaignUpdateManyWithoutUsersInput } from "./CampaignUpdateManyWithoutUsersInput";
-import { CompanyDetailUpdateManyWithoutUsersInput } from "./CompanyDetailUpdateManyWithoutUsersInput";
+import { CompanyRegistrationUpdateManyWithoutUsersInput } from "./CompanyRegistrationUpdateManyWithoutUsersInput";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
@@ -49,15 +49,15 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => CompanyDetailUpdateManyWithoutUsersInput,
+    type: () => CompanyRegistrationUpdateManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => CompanyDetailUpdateManyWithoutUsersInput)
+  @Type(() => CompanyRegistrationUpdateManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => CompanyDetailUpdateManyWithoutUsersInput, {
+  @Field(() => CompanyRegistrationUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  companyDetails?: CompanyDetailUpdateManyWithoutUsersInput;
+  companyDetails?: CompanyRegistrationUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
