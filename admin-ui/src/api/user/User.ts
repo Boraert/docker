@@ -1,13 +1,13 @@
 import { CampaignDetail } from "../campaignDetail/CampaignDetail";
 import { Campaign } from "../campaign/Campaign";
-import { CompanyDetail } from "../companyDetail/CompanyDetail";
+import { CompanyRegistration } from "../companyRegistration/CompanyRegistration";
 import { JsonValue } from "type-fest";
 import { Statistic } from "../statistic/Statistic";
 
 export type User = {
   campaignDetails?: Array<CampaignDetail>;
   campaigns?: Array<Campaign>;
-  companyDetails?: Array<CompanyDetail>;
+  companyDetails?: Array<CompanyRegistration>;
   createdAt: Date;
   firstName: string | null;
   id: string;

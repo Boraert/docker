@@ -33,9 +33,9 @@ import { CampaignDetailWhereUniqueInput } from "../../campaignDetail/base/Campai
 import { CampaignFindManyArgs } from "../../campaign/base/CampaignFindManyArgs";
 import { Campaign } from "../../campaign/base/Campaign";
 import { CampaignWhereUniqueInput } from "../../campaign/base/CampaignWhereUniqueInput";
-import { CompanyDetailFindManyArgs } from "../../companyDetail/base/CompanyDetailFindManyArgs";
-import { CompanyDetail } from "../../companyDetail/base/CompanyDetail";
-import { CompanyDetailWhereUniqueInput } from "../../companyDetail/base/CompanyDetailWhereUniqueInput";
+import { CompanyRegistrationFindManyArgs } from "../../companyRegistration/base/CompanyRegistrationFindManyArgs";
+import { CompanyRegistration } from "../../companyRegistration/base/CompanyRegistration";
+import { CompanyRegistrationWhereUniqueInput } from "../../companyRegistration/base/CompanyRegistrationWhereUniqueInput";
 import { StatisticFindManyArgs } from "../../statistic/base/StatisticFindManyArgs";
 import { Statistic } from "../../statistic/base/Statistic";
 import { StatisticWhereUniqueInput } from "../../statistic/base/StatisticWhereUniqueInput";
@@ -435,24 +435,32 @@ export class UserControllerBase {
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id/companyDetails")
-  @ApiNestedQuery(CompanyDetailFindManyArgs)
+  @ApiNestedQuery(CompanyRegistrationFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "CompanyDetail",
+    resource: "CompanyRegistration",
     action: "read",
     possession: "any",
   })
   async findManyCompanyDetails(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
-  ): Promise<CompanyDetail[]> {
-    const query = plainToClass(CompanyDetailFindManyArgs, request.query);
+  ): Promise<CompanyRegistration[]> {
+    const query = plainToClass(CompanyRegistrationFindManyArgs, request.query);
     const results = await this.service.findCompanyDetails(params.id, {
       ...query,
       select: {
         approvalStatus: true,
         businessAddress: true,
+        businessCategory: true,
+        businessEmail: true,
+        businessPhoneNumber: true,
+        companyName: true,
+        companyUrl: true,
         createdAt: true,
+        cvrNumber: true,
         id: true,
+        logo: true,
+        shortIntroductionToTheCompany: true,
         updatedAt: true,
       },
     });
@@ -472,7 +480,7 @@ export class UserControllerBase {
   })
   async connectCompanyDetails(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: CompanyDetailWhereUniqueInput[]
+    @common.Body() body: CompanyRegistrationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
       companyDetails: {
@@ -494,7 +502,7 @@ export class UserControllerBase {
   })
   async updateCompanyDetails(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: CompanyDetailWhereUniqueInput[]
+    @common.Body() body: CompanyRegistrationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
       companyDetails: {
@@ -516,7 +524,7 @@ export class UserControllerBase {
   })
   async disconnectCompanyDetails(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: CompanyDetailWhereUniqueInput[]
+    @common.Body() body: CompanyRegistrationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
       companyDetails: {

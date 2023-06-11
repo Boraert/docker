@@ -1,13 +1,13 @@
 import { CampaignDetailCreateNestedManyWithoutUsersInput } from "./CampaignDetailCreateNestedManyWithoutUsersInput";
 import { CampaignCreateNestedManyWithoutUsersInput } from "./CampaignCreateNestedManyWithoutUsersInput";
-import { CompanyDetailCreateNestedManyWithoutUsersInput } from "./CompanyDetailCreateNestedManyWithoutUsersInput";
+import { CompanyRegistrationCreateNestedManyWithoutUsersInput } from "./CompanyRegistrationCreateNestedManyWithoutUsersInput";
 import { InputJsonValue } from "../../types";
 import { StatisticCreateNestedManyWithoutUsersInput } from "./StatisticCreateNestedManyWithoutUsersInput";
 
 export type UserCreateInput = {
   campaignDetails?: CampaignDetailCreateNestedManyWithoutUsersInput;
   campaigns?: CampaignCreateNestedManyWithoutUsersInput;
-  companyDetails?: CompanyDetailCreateNestedManyWithoutUsersInput;
+  companyDetails?: CompanyRegistrationCreateNestedManyWithoutUsersInput;
   firstName?: string | null;
   lastName?: string | null;
   password: string;

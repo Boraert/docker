@@ -15,7 +15,7 @@ import { CampaignDetail } from "../../campaignDetail/base/CampaignDetail";
 import { ValidateNested, IsOptional, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { Campaign } from "../../campaign/base/Campaign";
-import { CompanyDetail } from "../../companyDetail/base/CompanyDetail";
+import { CompanyRegistration } from "../../companyRegistration/base/CompanyRegistration";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
@@ -43,12 +43,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => [CompanyDetail],
+    type: () => [CompanyRegistration],
   })
   @ValidateNested()
-  @Type(() => CompanyDetail)
+  @Type(() => CompanyRegistration)
   @IsOptional()
-  companyDetails?: Array<CompanyDetail>;
+  companyDetails?: Array<CompanyRegistration>;
 
   @ApiProperty({
     required: true,

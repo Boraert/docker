@@ -121,31 +121,31 @@
   },
   {
     "role": "user",
-    "resource": "CompanyDetail",
+    "resource": "CompanyRegistration",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "CompanyDetail",
+    "resource": "CompanyRegistration",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "CompanyDetail",
+    "resource": "CompanyRegistration",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "CompanyDetail",
+    "resource": "CompanyRegistration",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "CompanyDetail",
+    "resource": "CompanyRegistration",
     "action": "read:any",
     "attributes": "*"
   }

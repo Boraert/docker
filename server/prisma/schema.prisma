@@ -10,16 +10,16 @@ generator client {
 model User {
   campaignDetails CampaignDetail[]
   campaigns       Campaign[]
-  companyDetails  CompanyDetail[]
-  createdAt       DateTime         @default(now())
+  companyDetails  CompanyRegistration[]
+  createdAt       DateTime              @default(now())
   firstName       String?
-  id              String           @id @default(cuid())
+  id              String                @id @default(cuid())
   lastName        String?
   password        String
   roles           Json
   statistics      Statistic[]
-  updatedAt       DateTime         @updatedAt
-  username        String           @unique
+  updatedAt       DateTime              @updatedAt
+  username        String                @unique
 }
 
 model Campaign {
@@ -65,11 +65,19 @@ model Statistic {
   websiteVisitors Int?
 }
 
-model CompanyDetail {
-  approvalStatus  Boolean?
-  businessAddress String?
-  createdAt       DateTime @default(now())
-  id              String   @id @default(cuid())
-  updatedAt       DateTime @updatedAt
-  user            User[]
+model CompanyRegistration {
+  approvalStatus                Boolean?
+  businessAddress               String
+  businessCategory              String
+  businessEmail                 String   @unique
+  businessPhoneNumber           String
+  companyName                   String
+  companyUrl                    String?
+  createdAt                     DateTime @default(now())
+  cvrNumber                     String
+  id                            String   @id @default(cuid())
+  logo                          String?
+  shortIntroductionToTheCompany String
+  updatedAt                     DateTime @updatedAt
+  user                          User[]
 }
