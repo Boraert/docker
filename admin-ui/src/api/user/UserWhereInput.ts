@@ -8,7 +8,7 @@ import { StatisticListRelationFilter } from "../statistic/StatisticListRelationF
 export type UserWhereInput = {
   campaignDetails?: CampaignDetailListRelationFilter;
   campaigns?: CampaignListRelationFilter;
-  companyDetails?: CompanyRegistrationListRelationFilter;
+  companyRegistration?: CompanyRegistrationListRelationFilter;
   firstName?: StringNullableFilter;
   id?: StringFilter;
   lastName?: StringNullableFilter;

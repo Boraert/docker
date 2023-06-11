@@ -101,7 +101,7 @@ export class UserServiceBase {
       .campaigns(args);
   }
 
-  async findCompanyDetails(
+  async findCompanyRegistration(
     parentId: string,
     args: Prisma.CompanyRegistrationFindManyArgs
   ): Promise<CompanyRegistration[]> {
@@ -109,7 +109,7 @@ export class UserServiceBase {
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .companyDetails(args);
+      .companyRegistration(args);
   }
 
   async findStatistics(

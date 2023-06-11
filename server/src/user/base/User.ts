@@ -48,7 +48,7 @@ class User {
   @ValidateNested()
   @Type(() => CompanyRegistration)
   @IsOptional()
-  companyDetails?: Array<CompanyRegistration>;
+  companyRegistration?: Array<CompanyRegistration>;
 
   @ApiProperty({
     required: true,

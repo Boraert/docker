@@ -7,7 +7,7 @@ import { StatisticUpdateManyWithoutUsersInput } from "./StatisticUpdateManyWitho
 export type UserUpdateInput = {
   campaignDetails?: CampaignDetailUpdateManyWithoutUsersInput;
   campaigns?: CampaignUpdateManyWithoutUsersInput;
-  companyDetails?: CompanyRegistrationUpdateManyWithoutUsersInput;
+  companyRegistration?: CompanyRegistrationUpdateManyWithoutUsersInput;
   firstName?: string | null;
   lastName?: string | null;
   password?: string;

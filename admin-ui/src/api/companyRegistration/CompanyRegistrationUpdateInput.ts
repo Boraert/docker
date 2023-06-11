@@ -1,4 +1,4 @@
-import { UserUpdateManyWithoutCompanyRegistrationsInput } from "./UserUpdateManyWithoutCompanyRegistrationsInput";
+import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type CompanyRegistrationUpdateInput = {
   approvalStatus?: boolean | null;
@@ -11,5 +11,5 @@ export type CompanyRegistrationUpdateInput = {
   cvrNumber?: string;
   logo?: string | null;
   shortIntroductionToTheCompany?: string;
-  user?: UserUpdateManyWithoutCompanyRegistrationsInput;
+  user?: UserWhereUniqueInput;
 };

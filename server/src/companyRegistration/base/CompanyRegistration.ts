@@ -137,13 +137,12 @@ class CompanyRegistration {
   updatedAt!: Date;
 
   @ApiProperty({
-    required: false,
-    type: () => [User],
+    required: true,
+    type: () => User,
   })
   @ValidateNested()
   @Type(() => User)
-  @IsOptional()
-  user?: Array<User>;
+  user?: User;
 }
 
 export { CompanyRegistration as CompanyRegistration };

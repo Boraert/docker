@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Show,
   SimpleShowLayout,
@@ -6,7 +7,10 @@ import {
   BooleanField,
   TextField,
   DateField,
+  ReferenceField,
 } from "react-admin";
+
+import { USER_TITLE_FIELD } from "../user/UserTitle";
 
 export const CompanyRegistrationShow = (
   props: ShowProps
@@ -30,6 +34,9 @@ export const CompanyRegistrationShow = (
           source="shortIntroductionToTheCompany"
         />
         <DateField source="updatedAt" label="Updated At" />
+        <ReferenceField label="User" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
       </SimpleShowLayout>
     </Show>
   );

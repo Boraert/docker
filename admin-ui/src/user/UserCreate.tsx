@@ -37,7 +37,7 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
           <SelectArrayInput optionText={CampaignTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="companyDetails"
+          source="companyRegistration"
           reference="CompanyRegistration"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}

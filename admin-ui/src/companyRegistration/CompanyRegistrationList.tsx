@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   List,
   Datagrid,
@@ -6,8 +7,11 @@ import {
   BooleanField,
   TextField,
   DateField,
+  ReferenceField,
 } from "react-admin";
+
 import Pagination from "../Components/Pagination";
+import { USER_TITLE_FIELD } from "../user/UserTitle";
 
 export const CompanyRegistrationList = (
   props: ListProps
@@ -37,6 +41,9 @@ export const CompanyRegistrationList = (
           source="shortIntroductionToTheCompany"
         />
         <DateField source="updatedAt" label="Updated At" />
+        <ReferenceField label="User" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
       </Datagrid>
     </List>
   );

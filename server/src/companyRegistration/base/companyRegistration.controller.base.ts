@@ -27,9 +27,6 @@ import { CompanyRegistrationWhereUniqueInput } from "./CompanyRegistrationWhereU
 import { CompanyRegistrationFindManyArgs } from "./CompanyRegistrationFindManyArgs";
 import { CompanyRegistrationUpdateInput } from "./CompanyRegistrationUpdateInput";
 import { CompanyRegistration } from "./CompanyRegistration";
-import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
-import { User } from "../../user/base/User";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -53,7 +50,13 @@ export class CompanyRegistrationControllerBase {
     @common.Body() data: CompanyRegistrationCreateInput
   ): Promise<CompanyRegistration> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        user: {
+          connect: data.user,
+        },
+      },
       select: {
         approvalStatus: true,
         businessAddress: true,
@@ -68,6 +71,12 @@ export class CompanyRegistrationControllerBase {
         logo: true,
         shortIntroductionToTheCompany: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -104,6 +113,12 @@ export class CompanyRegistrationControllerBase {
         logo: true,
         shortIntroductionToTheCompany: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -139,6 +154,12 @@ export class CompanyRegistrationControllerBase {
         logo: true,
         shortIntroductionToTheCompany: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (result === null) {
@@ -168,7 +189,13 @@ export class CompanyRegistrationControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          user: {
+            connect: data.user,
+          },
+        },
         select: {
           approvalStatus: true,
           businessAddress: true,
@@ -183,6 +210,12 @@ export class CompanyRegistrationControllerBase {
           logo: true,
           shortIntroductionToTheCompany: true,
           updatedAt: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -226,6 +259,12 @@ export class CompanyRegistrationControllerBase {
           logo: true,
           shortIntroductionToTheCompany: true,
           updatedAt: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -236,104 +275,5 @@ export class CompanyRegistrationControllerBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/user")
-  @ApiNestedQuery(UserFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "read",
-    possession: "any",
-  })
-  async findManyUser(
-    @common.Req() request: Request,
-    @common.Param() params: CompanyRegistrationWhereUniqueInput
-  ): Promise<User[]> {
-    const query = plainToClass(UserFindManyArgs, request.query);
-    const results = await this.service.findUser(params.id, {
-      ...query,
-      select: {
-        createdAt: true,
-        firstName: true,
-        id: true,
-        lastName: true,
-        roles: true,
-        updatedAt: true,
-        username: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/user")
-  @nestAccessControl.UseRoles({
-    resource: "CompanyRegistration",
-    action: "update",
-    possession: "any",
-  })
-  async connectUser(
-    @common.Param() params: CompanyRegistrationWhereUniqueInput,
-    @common.Body() body: UserWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      user: {
-        connect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/user")
-  @nestAccessControl.UseRoles({
-    resource: "CompanyRegistration",
-    action: "update",
-    possession: "any",
-  })
-  async updateUser(
-    @common.Param() params: CompanyRegistrationWhereUniqueInput,
-    @common.Body() body: UserWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      user: {
-        set: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/user")
-  @nestAccessControl.UseRoles({
-    resource: "CompanyRegistration",
-    action: "update",
-    possession: "any",
-  })
-  async disconnectUser(
-    @common.Param() params: CompanyRegistrationWhereUniqueInput,
-    @common.Body() body: UserWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      user: {
-        disconnect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
   }
 }

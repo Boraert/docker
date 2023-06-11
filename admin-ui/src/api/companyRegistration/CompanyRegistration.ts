@@ -14,5 +14,5 @@ export type CompanyRegistration = {
   logo: string | null;
   shortIntroductionToTheCompany: string;
   updatedAt: Date;
-  user?: Array<User>;
+  user?: User;
 };

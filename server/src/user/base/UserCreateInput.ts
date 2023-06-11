@@ -57,7 +57,7 @@ class UserCreateInput {
   @Field(() => CompanyRegistrationCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  companyDetails?: CompanyRegistrationCreateNestedManyWithoutUsersInput;
+  companyRegistration?: CompanyRegistrationCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

@@ -57,7 +57,7 @@ class UserUpdateInput {
   @Field(() => CompanyRegistrationUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  companyDetails?: CompanyRegistrationUpdateManyWithoutUsersInput;
+  companyRegistration?: CompanyRegistrationUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
