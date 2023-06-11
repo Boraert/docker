@@ -7,7 +7,7 @@ import { Statistic } from "../statistic/Statistic";
 export type User = {
   campaignDetails?: Array<CampaignDetail>;
   campaigns?: Array<Campaign>;
-  companyDetails?: Array<CompanyRegistration>;
+  companyRegistration?: Array<CompanyRegistration>;
   createdAt: Date;
   firstName: string | null;
   id: string;

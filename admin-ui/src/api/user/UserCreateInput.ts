@@ -7,7 +7,7 @@ import { StatisticCreateNestedManyWithoutUsersInput } from "./StatisticCreateNes
 export type UserCreateInput = {
   campaignDetails?: CampaignDetailCreateNestedManyWithoutUsersInput;
   campaigns?: CampaignCreateNestedManyWithoutUsersInput;
-  companyDetails?: CompanyRegistrationCreateNestedManyWithoutUsersInput;
+  companyRegistration?: CompanyRegistrationCreateNestedManyWithoutUsersInput;
   firstName?: string | null;
   lastName?: string | null;
   password: string;

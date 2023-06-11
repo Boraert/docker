@@ -434,19 +434,19 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/companyDetails")
+  @common.Get("/:id/companyRegistration")
   @ApiNestedQuery(CompanyRegistrationFindManyArgs)
   @nestAccessControl.UseRoles({
     resource: "CompanyRegistration",
     action: "read",
     possession: "any",
   })
-  async findManyCompanyDetails(
+  async findManyCompanyRegistration(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
   ): Promise<CompanyRegistration[]> {
     const query = plainToClass(CompanyRegistrationFindManyArgs, request.query);
-    const results = await this.service.findCompanyDetails(params.id, {
+    const results = await this.service.findCompanyRegistration(params.id, {
       ...query,
       select: {
         approvalStatus: true,
@@ -462,6 +462,12 @@ export class UserControllerBase {
         logo: true,
         shortIntroductionToTheCompany: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (results === null) {
@@ -472,18 +478,18 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/companyDetails")
+  @common.Post("/:id/companyRegistration")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async connectCompanyDetails(
+  async connectCompanyRegistration(
     @common.Param() params: UserWhereUniqueInput,
     @common.Body() body: CompanyRegistrationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      companyDetails: {
+      companyRegistration: {
         connect: body,
       },
     };
@@ -494,18 +500,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/companyDetails")
+  @common.Patch("/:id/companyRegistration")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async updateCompanyDetails(
+  async updateCompanyRegistration(
     @common.Param() params: UserWhereUniqueInput,
     @common.Body() body: CompanyRegistrationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      companyDetails: {
+      companyRegistration: {
         set: body,
       },
     };
@@ -516,18 +522,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/companyDetails")
+  @common.Delete("/:id/companyRegistration")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async disconnectCompanyDetails(
+  async disconnectCompanyRegistration(
     @common.Param() params: UserWhereUniqueInput,
     @common.Body() body: CompanyRegistrationWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      companyDetails: {
+      companyRegistration: {
         disconnect: body,
       },
     };

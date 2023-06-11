@@ -25,7 +25,6 @@ import { DeleteCompanyRegistrationArgs } from "./DeleteCompanyRegistrationArgs";
 import { CompanyRegistrationFindManyArgs } from "./CompanyRegistrationFindManyArgs";
 import { CompanyRegistrationFindUniqueArgs } from "./CompanyRegistrationFindUniqueArgs";
 import { CompanyRegistration } from "./CompanyRegistration";
-import { UserFindManyArgs } from "../../user/base/UserFindManyArgs";
 import { User } from "../../user/base/User";
 import { CompanyRegistrationService } from "../companyRegistration.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -97,7 +96,13 @@ export class CompanyRegistrationResolverBase {
   ): Promise<CompanyRegistration> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        user: {
+          connect: args.data.user,
+        },
+      },
     });
   }
 
@@ -114,7 +119,13 @@ export class CompanyRegistrationResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          user: {
+            connect: args.data.user,
+          },
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -148,22 +159,23 @@ export class CompanyRegistrationResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [User], { name: "user" })
+  @graphql.ResolveField(() => User, {
+    nullable: true,
+    name: "user",
+  })
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "read",
     possession: "any",
   })
   async resolveFieldUser(
-    @graphql.Parent() parent: CompanyRegistration,
-    @graphql.Args() args: UserFindManyArgs
-  ): Promise<User[]> {
-    const results = await this.service.findUser(parent.id, args);
+    @graphql.Parent() parent: CompanyRegistration
+  ): Promise<User | null> {
+    const result = await this.service.getUser(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
-
-    return results;
+    return result;
   }
 }

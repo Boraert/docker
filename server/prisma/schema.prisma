@@ -8,18 +8,18 @@ generator client {
 }
 
 model User {
-  campaignDetails CampaignDetail[]
-  campaigns       Campaign[]
-  companyDetails  CompanyRegistration[]
-  createdAt       DateTime              @default(now())
-  firstName       String?
-  id              String                @id @default(cuid())
-  lastName        String?
-  password        String
-  roles           Json
-  statistics      Statistic[]
-  updatedAt       DateTime              @updatedAt
-  username        String                @unique
+  campaignDetails     CampaignDetail[]
+  campaigns           Campaign[]
+  companyRegistration CompanyRegistration[]
+  createdAt           DateTime              @default(now())
+  firstName           String?
+  id                  String                @id @default(cuid())
+  lastName            String?
+  password            String
+  roles               Json
+  statistics          Statistic[]
+  updatedAt           DateTime              @updatedAt
+  username            String                @unique
 }
 
 model Campaign {
@@ -79,5 +79,6 @@ model CompanyRegistration {
   logo                          String?
   shortIntroductionToTheCompany String
   updatedAt                     DateTime @updatedAt
-  user                          User[]
+  user                          User     @relation(fields: [userId], references: [id])
+  userId                        String
 }

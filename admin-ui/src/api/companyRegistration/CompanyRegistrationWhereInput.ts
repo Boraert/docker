@@ -1,7 +1,7 @@
 import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { UserListRelationFilter } from "../user/UserListRelationFilter";
+import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type CompanyRegistrationWhereInput = {
   approvalStatus?: BooleanNullableFilter;
@@ -15,5 +15,5 @@ export type CompanyRegistrationWhereInput = {
   id?: StringFilter;
   logo?: StringNullableFilter;
   shortIntroductionToTheCompany?: StringFilter;
-  user?: UserListRelationFilter;
+  user?: UserWhereUniqueInput;
 };

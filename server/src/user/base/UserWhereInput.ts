@@ -56,7 +56,7 @@ class UserWhereInput {
   @Field(() => CompanyRegistrationListRelationFilter, {
     nullable: true,
   })
-  companyDetails?: CompanyRegistrationListRelationFilter;
+  companyRegistration?: CompanyRegistrationListRelationFilter;
 
   @ApiProperty({
     required: false,

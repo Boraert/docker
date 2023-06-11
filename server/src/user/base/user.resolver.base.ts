@@ -184,17 +184,19 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [CompanyRegistration], { name: "companyDetails" })
+  @graphql.ResolveField(() => [CompanyRegistration], {
+    name: "companyRegistration",
+  })
   @nestAccessControl.UseRoles({
     resource: "CompanyRegistration",
     action: "read",
     possession: "any",
   })
-  async resolveFieldCompanyDetails(
+  async resolveFieldCompanyRegistration(
     @graphql.Parent() parent: User,
     @graphql.Args() args: CompanyRegistrationFindManyArgs
   ): Promise<CompanyRegistration[]> {
-    const results = await this.service.findCompanyDetails(parent.id, args);
+    const results = await this.service.findCompanyRegistration(parent.id, args);
 
     if (!results) {
       return [];

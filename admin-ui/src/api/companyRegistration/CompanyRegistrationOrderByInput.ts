@@ -14,4 +14,5 @@ export type CompanyRegistrationOrderByInput = {
   logo?: SortOrder;
   shortIntroductionToTheCompany?: SortOrder;
   updatedAt?: SortOrder;
+  userId?: SortOrder;
 };

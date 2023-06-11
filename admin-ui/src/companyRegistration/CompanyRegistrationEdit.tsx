@@ -6,8 +6,8 @@ import {
   EditProps,
   BooleanInput,
   TextInput,
-  ReferenceArrayInput,
-  SelectArrayInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 
 import { UserTitle } from "../user/UserTitle";
@@ -36,14 +36,9 @@ export const CompanyRegistrationEdit = (
           multiline
           source="shortIntroductionToTheCompany"
         />
-        <ReferenceArrayInput
-          source="user"
-          reference="User"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={UserTitle} />
-        </ReferenceArrayInput>
+        <ReferenceInput source="user.id" reference="User" label="User">
+          <SelectInput optionText={UserTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Edit>
   );

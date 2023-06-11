@@ -1,4 +1,4 @@
-import { UserCreateNestedManyWithoutCompanyRegistrationsInput } from "./UserCreateNestedManyWithoutCompanyRegistrationsInput";
+import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type CompanyRegistrationCreateInput = {
   approvalStatus?: boolean | null;
@@ -11,5 +11,5 @@ export type CompanyRegistrationCreateInput = {
   cvrNumber: string;
   logo?: string | null;
   shortIntroductionToTheCompany: string;
-  user?: UserCreateNestedManyWithoutCompanyRegistrationsInput;
+  user: UserWhereUniqueInput;
 };
