@@ -11,20 +11,18 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ArgsType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { CampaignWhereUniqueInput } from "./CampaignWhereUniqueInput";
-import { ValidateNested } from "class-validator";
+import { CampaignWhereInput } from "./CampaignWhereInput";
 import { Type } from "class-transformer";
 
 @ArgsType()
-class DeleteCampaignArgs {
+class CampaignCountArgs {
   @ApiProperty({
-    required: true,
-    type: () => CampaignWhereUniqueInput,
+    required: false,
+    type: () => CampaignWhereInput,
   })
-  @ValidateNested()
-  @Type(() => CampaignWhereUniqueInput)
-  @Field(() => CampaignWhereUniqueInput, { nullable: false })
-  where!: CampaignWhereUniqueInput;
+  @Field(() => CampaignWhereInput, { nullable: true })
+  @Type(() => CampaignWhereInput)
+  where?: CampaignWhereInput;
 }
 
-export { DeleteCampaignArgs as DeleteCampaignArgs };
+export { CampaignCountArgs as CampaignCountArgs };

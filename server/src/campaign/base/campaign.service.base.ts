@@ -15,8 +15,8 @@ import { Prisma, Campaign, User } from "@prisma/client";
 export class CampaignServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.CampaignFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.CampaignFindManyArgs>
+  async count<T extends Prisma.CampaignCountArgs>(
+    args: Prisma.SelectSubset<T, Prisma.CampaignCountArgs>
   ): Promise<number> {
     return this.prisma.campaign.count(args);
   }

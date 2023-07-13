@@ -12,6 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { ArgsType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { CompanyRegistrationWhereInput } from "./CompanyRegistrationWhereInput";
+import { IsOptional, ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 import { CompanyRegistrationOrderByInput } from "./CompanyRegistrationOrderByInput";
 
@@ -21,6 +22,8 @@ class CompanyRegistrationFindManyArgs {
     required: false,
     type: () => CompanyRegistrationWhereInput,
   })
+  @IsOptional()
+  @ValidateNested()
   @Field(() => CompanyRegistrationWhereInput, { nullable: true })
   @Type(() => CompanyRegistrationWhereInput)
   where?: CompanyRegistrationWhereInput;
@@ -29,6 +32,8 @@ class CompanyRegistrationFindManyArgs {
     required: false,
     type: [CompanyRegistrationOrderByInput],
   })
+  @IsOptional()
+  @ValidateNested({ each: true })
   @Field(() => [CompanyRegistrationOrderByInput], { nullable: true })
   @Type(() => CompanyRegistrationOrderByInput)
   orderBy?: Array<CompanyRegistrationOrderByInput>;
@@ -37,6 +42,8 @@ class CompanyRegistrationFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   skip?: number;
@@ -45,6 +52,8 @@ class CompanyRegistrationFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   take?: number;

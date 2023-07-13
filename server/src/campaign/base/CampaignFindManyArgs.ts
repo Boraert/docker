@@ -12,6 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { ArgsType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { CampaignWhereInput } from "./CampaignWhereInput";
+import { IsOptional, ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 import { CampaignOrderByInput } from "./CampaignOrderByInput";
 
@@ -21,6 +22,8 @@ class CampaignFindManyArgs {
     required: false,
     type: () => CampaignWhereInput,
   })
+  @IsOptional()
+  @ValidateNested()
   @Field(() => CampaignWhereInput, { nullable: true })
   @Type(() => CampaignWhereInput)
   where?: CampaignWhereInput;
@@ -29,6 +32,8 @@ class CampaignFindManyArgs {
     required: false,
     type: [CampaignOrderByInput],
   })
+  @IsOptional()
+  @ValidateNested({ each: true })
   @Field(() => [CampaignOrderByInput], { nullable: true })
   @Type(() => CampaignOrderByInput)
   orderBy?: Array<CampaignOrderByInput>;
@@ -37,6 +42,8 @@ class CampaignFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   skip?: number;
@@ -45,6 +52,8 @@ class CampaignFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   take?: number;

@@ -15,8 +15,8 @@ import { Prisma, CompanyRegistration, User } from "@prisma/client";
 export class CompanyRegistrationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.CompanyRegistrationFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.CompanyRegistrationFindManyArgs>
+  async count<T extends Prisma.CompanyRegistrationCountArgs>(
+    args: Prisma.SelectSubset<T, Prisma.CompanyRegistrationCountArgs>
   ): Promise<number> {
     return this.prisma.companyRegistration.count(args);
   }

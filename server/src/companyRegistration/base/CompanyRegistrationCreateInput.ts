@@ -74,15 +74,12 @@ class CompanyRegistrationCreateInput {
   companyName!: string;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: String,
   })
   @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  companyUrl?: string | null;
+  @Field(() => String)
+  companyUrl!: string;
 
   @ApiProperty({
     required: true,

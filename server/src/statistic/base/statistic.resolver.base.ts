@@ -22,6 +22,7 @@ import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateReq
 import { CreateStatisticArgs } from "./CreateStatisticArgs";
 import { UpdateStatisticArgs } from "./UpdateStatisticArgs";
 import { DeleteStatisticArgs } from "./DeleteStatisticArgs";
+import { StatisticCountArgs } from "./StatisticCountArgs";
 import { StatisticFindManyArgs } from "./StatisticFindManyArgs";
 import { StatisticFindUniqueArgs } from "./StatisticFindUniqueArgs";
 import { Statistic } from "./Statistic";
@@ -42,15 +43,11 @@ export class StatisticResolverBase {
     possession: "any",
   })
   async _statisticsMeta(
-    @graphql.Args() args: StatisticFindManyArgs
+    @graphql.Args() args: StatisticCountArgs
   ): Promise<MetaQueryPayload> {
-    const results = await this.service.count({
-      ...args,
-      skip: undefined,
-      take: undefined,
-    });
+    const result = await this.service.count(args);
     return {
-      count: results,
+      count: result,
     };
   }
 

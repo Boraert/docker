@@ -10,7 +10,7 @@ export type CompanyRegistrationWhereInput = {
   businessEmail?: StringFilter;
   businessPhoneNumber?: StringFilter;
   companyName?: StringFilter;
-  companyUrl?: StringNullableFilter;
+  companyUrl?: StringFilter;
   cvrNumber?: StringFilter;
   id?: StringFilter;
   logo?: StringNullableFilter;

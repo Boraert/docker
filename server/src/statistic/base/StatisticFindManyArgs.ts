@@ -12,6 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { ArgsType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StatisticWhereInput } from "./StatisticWhereInput";
+import { IsOptional, ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 import { StatisticOrderByInput } from "./StatisticOrderByInput";
 
@@ -21,6 +22,8 @@ class StatisticFindManyArgs {
     required: false,
     type: () => StatisticWhereInput,
   })
+  @IsOptional()
+  @ValidateNested()
   @Field(() => StatisticWhereInput, { nullable: true })
   @Type(() => StatisticWhereInput)
   where?: StatisticWhereInput;
@@ -29,6 +32,8 @@ class StatisticFindManyArgs {
     required: false,
     type: [StatisticOrderByInput],
   })
+  @IsOptional()
+  @ValidateNested({ each: true })
   @Field(() => [StatisticOrderByInput], { nullable: true })
   @Type(() => StatisticOrderByInput)
   orderBy?: Array<StatisticOrderByInput>;
@@ -37,6 +42,8 @@ class StatisticFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   skip?: number;
@@ -45,6 +52,8 @@ class StatisticFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   take?: number;
