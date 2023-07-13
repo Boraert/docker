@@ -119,7 +119,7 @@ class CompanyRegistrationUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  logo?: string | null;
+  logo?: string;
 
   @ApiProperty({
     required: false,
