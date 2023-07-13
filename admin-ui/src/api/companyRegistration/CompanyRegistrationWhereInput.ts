@@ -1,6 +1,5 @@
 import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type CompanyRegistrationWhereInput = {
@@ -13,7 +12,7 @@ export type CompanyRegistrationWhereInput = {
   companyUrl?: StringFilter;
   cvrNumber?: StringFilter;
   id?: StringFilter;
-  logo?: StringNullableFilter;
+  logo?: StringFilter;
   shortIntroductionToTheCompany?: StringFilter;
   user?: UserWhereUniqueInput;
 };

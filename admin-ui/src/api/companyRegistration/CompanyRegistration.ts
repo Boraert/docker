@@ -11,7 +11,7 @@ export type CompanyRegistration = {
   createdAt: Date;
   cvrNumber: string;
   id: string;
-  logo: string | null;
+  logo: string;
   shortIntroductionToTheCompany: string;
   updatedAt: Date;
   user?: User;

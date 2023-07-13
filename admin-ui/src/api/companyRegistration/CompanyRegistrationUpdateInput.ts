@@ -9,7 +9,7 @@ export type CompanyRegistrationUpdateInput = {
   companyName?: string;
   companyUrl?: string;
   cvrNumber?: string;
-  logo?: string | null;
+  logo?: string;
   shortIntroductionToTheCompany?: string;
   user?: UserWhereUniqueInput;
 };
