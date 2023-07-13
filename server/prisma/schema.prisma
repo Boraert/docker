@@ -67,16 +67,16 @@ model Statistic {
 
 model CompanyRegistration {
   approvalStatus                Boolean?
-  businessAddress               String
+  businessAddress               String?
   businessCategory              String
   businessEmail                 String   @unique
-  businessPhoneNumber           String
+  businessPhoneNumber           String?
   companyName                   String
   companyUrl                    String
   createdAt                     DateTime @default(now())
   cvrNumber                     String
   id                            String   @id @default(cuid())
-  logo                          String
+  logo                          String?
   shortIntroductionToTheCompany String
   updatedAt                     DateTime @updatedAt
   user                          User     @relation(fields: [userId], references: [id])

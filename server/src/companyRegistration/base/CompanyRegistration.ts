@@ -35,12 +35,15 @@ class CompanyRegistration {
   approvalStatus!: boolean | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String)
-  businessAddress!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  businessAddress!: string | null;
 
   @ApiProperty({
     required: true,
@@ -59,12 +62,15 @@ class CompanyRegistration {
   businessEmail!: string;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String)
-  businessPhoneNumber!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  businessPhoneNumber!: string | null;
 
   @ApiProperty({
     required: true,
@@ -107,12 +113,15 @@ class CompanyRegistration {
   id!: string;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String)
-  logo!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  logo!: string | null;
 
   @ApiProperty({
     required: true,
