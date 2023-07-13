@@ -12,6 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { ArgsType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { CampaignDetailWhereInput } from "./CampaignDetailWhereInput";
+import { IsOptional, ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 import { CampaignDetailOrderByInput } from "./CampaignDetailOrderByInput";
 
@@ -21,6 +22,8 @@ class CampaignDetailFindManyArgs {
     required: false,
     type: () => CampaignDetailWhereInput,
   })
+  @IsOptional()
+  @ValidateNested()
   @Field(() => CampaignDetailWhereInput, { nullable: true })
   @Type(() => CampaignDetailWhereInput)
   where?: CampaignDetailWhereInput;
@@ -29,6 +32,8 @@ class CampaignDetailFindManyArgs {
     required: false,
     type: [CampaignDetailOrderByInput],
   })
+  @IsOptional()
+  @ValidateNested({ each: true })
   @Field(() => [CampaignDetailOrderByInput], { nullable: true })
   @Type(() => CampaignDetailOrderByInput)
   orderBy?: Array<CampaignDetailOrderByInput>;
@@ -37,6 +42,8 @@ class CampaignDetailFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   skip?: number;
@@ -45,6 +52,8 @@ class CampaignDetailFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   take?: number;

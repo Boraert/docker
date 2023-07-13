@@ -10,10 +10,19 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { ArgsType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
 import { StatisticWhereUniqueInput } from "./StatisticWhereUniqueInput";
+import { ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
 
 @ArgsType()
 class DeleteStatisticArgs {
+  @ApiProperty({
+    required: true,
+    type: () => StatisticWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => StatisticWhereUniqueInput)
   @Field(() => StatisticWhereUniqueInput, { nullable: false })
   where!: StatisticWhereUniqueInput;
 }

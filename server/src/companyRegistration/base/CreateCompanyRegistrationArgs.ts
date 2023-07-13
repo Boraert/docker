@@ -10,10 +10,19 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { ArgsType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
 import { CompanyRegistrationCreateInput } from "./CompanyRegistrationCreateInput";
+import { ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
 
 @ArgsType()
 class CreateCompanyRegistrationArgs {
+  @ApiProperty({
+    required: true,
+    type: () => CompanyRegistrationCreateInput,
+  })
+  @ValidateNested()
+  @Type(() => CompanyRegistrationCreateInput)
   @Field(() => CompanyRegistrationCreateInput, { nullable: false })
   data!: CompanyRegistrationCreateInput;
 }

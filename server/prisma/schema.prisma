@@ -72,7 +72,7 @@ model CompanyRegistration {
   businessEmail                 String   @unique
   businessPhoneNumber           String
   companyName                   String
-  companyUrl                    String?
+  companyUrl                    String
   createdAt                     DateTime @default(now())
   cvrNumber                     String
   id                            String   @id @default(cuid())

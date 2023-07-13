@@ -7,7 +7,7 @@ export type CompanyRegistration = {
   businessEmail: string;
   businessPhoneNumber: string;
   companyName: string;
-  companyUrl: string | null;
+  companyUrl: string;
   createdAt: Date;
   cvrNumber: string;
   id: string;

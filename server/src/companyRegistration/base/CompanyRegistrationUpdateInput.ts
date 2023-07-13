@@ -97,7 +97,7 @@ class CompanyRegistrationUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  companyUrl?: string | null;
+  companyUrl?: string;
 
   @ApiProperty({
     required: false,

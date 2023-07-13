@@ -22,6 +22,7 @@ import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateReq
 import { CreateCompanyRegistrationArgs } from "./CreateCompanyRegistrationArgs";
 import { UpdateCompanyRegistrationArgs } from "./UpdateCompanyRegistrationArgs";
 import { DeleteCompanyRegistrationArgs } from "./DeleteCompanyRegistrationArgs";
+import { CompanyRegistrationCountArgs } from "./CompanyRegistrationCountArgs";
 import { CompanyRegistrationFindManyArgs } from "./CompanyRegistrationFindManyArgs";
 import { CompanyRegistrationFindUniqueArgs } from "./CompanyRegistrationFindUniqueArgs";
 import { CompanyRegistration } from "./CompanyRegistration";
@@ -42,15 +43,11 @@ export class CompanyRegistrationResolverBase {
     possession: "any",
   })
   async _companyRegistrationsMeta(
-    @graphql.Args() args: CompanyRegistrationFindManyArgs
+    @graphql.Args() args: CompanyRegistrationCountArgs
   ): Promise<MetaQueryPayload> {
-    const results = await this.service.count({
-      ...args,
-      skip: undefined,
-      take: undefined,
-    });
+    const result = await this.service.count(args);
     return {
-      count: results,
+      count: result,
     };
   }
 

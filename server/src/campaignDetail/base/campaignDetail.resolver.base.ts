@@ -22,6 +22,7 @@ import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateReq
 import { CreateCampaignDetailArgs } from "./CreateCampaignDetailArgs";
 import { UpdateCampaignDetailArgs } from "./UpdateCampaignDetailArgs";
 import { DeleteCampaignDetailArgs } from "./DeleteCampaignDetailArgs";
+import { CampaignDetailCountArgs } from "./CampaignDetailCountArgs";
 import { CampaignDetailFindManyArgs } from "./CampaignDetailFindManyArgs";
 import { CampaignDetailFindUniqueArgs } from "./CampaignDetailFindUniqueArgs";
 import { CampaignDetail } from "./CampaignDetail";
@@ -42,15 +43,11 @@ export class CampaignDetailResolverBase {
     possession: "any",
   })
   async _campaignDetailsMeta(
-    @graphql.Args() args: CampaignDetailFindManyArgs
+    @graphql.Args() args: CampaignDetailCountArgs
   ): Promise<MetaQueryPayload> {
-    const results = await this.service.count({
-      ...args,
-      skip: undefined,
-      take: undefined,
-    });
+    const result = await this.service.count(args);
     return {
-      count: results,
+      count: result,
     };
   }
 

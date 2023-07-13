@@ -15,8 +15,8 @@ import { Prisma, Statistic, User } from "@prisma/client";
 export class StatisticServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.StatisticFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.StatisticFindManyArgs>
+  async count<T extends Prisma.StatisticCountArgs>(
+    args: Prisma.SelectSubset<T, Prisma.StatisticCountArgs>
   ): Promise<number> {
     return this.prisma.statistic.count(args);
   }

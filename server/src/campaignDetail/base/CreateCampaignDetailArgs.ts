@@ -10,10 +10,19 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { ArgsType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
 import { CampaignDetailCreateInput } from "./CampaignDetailCreateInput";
+import { ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
 
 @ArgsType()
 class CreateCampaignDetailArgs {
+  @ApiProperty({
+    required: true,
+    type: () => CampaignDetailCreateInput,
+  })
+  @ValidateNested()
+  @Type(() => CampaignDetailCreateInput)
   @Field(() => CampaignDetailCreateInput, { nullable: false })
   data!: CampaignDetailCreateInput;
 }

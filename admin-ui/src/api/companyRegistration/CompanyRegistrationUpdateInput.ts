@@ -7,7 +7,7 @@ export type CompanyRegistrationUpdateInput = {
   businessEmail?: string;
   businessPhoneNumber?: string;
   companyName?: string;
-  companyUrl?: string | null;
+  companyUrl?: string;
   cvrNumber?: string;
   logo?: string | null;
   shortIntroductionToTheCompany?: string;
