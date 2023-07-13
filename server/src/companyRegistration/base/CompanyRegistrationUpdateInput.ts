@@ -42,7 +42,7 @@ class CompanyRegistrationUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  businessAddress?: string;
+  businessAddress?: string | null;
 
   @ApiProperty({
     required: false,
@@ -75,7 +75,7 @@ class CompanyRegistrationUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  businessPhoneNumber?: string;
+  businessPhoneNumber?: string | null;
 
   @ApiProperty({
     required: false,
@@ -119,7 +119,7 @@ class CompanyRegistrationUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  logo?: string;
+  logo?: string | null;
 
   @ApiProperty({
     required: false,
